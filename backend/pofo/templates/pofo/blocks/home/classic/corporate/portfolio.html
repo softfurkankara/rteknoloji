@@ -1,0 +1,65 @@
+{% load wagtailimages_tags wagtailcore_tags %}
+
+<!-- start portfolio section -->
+<section class="{{ self.section_classes }}">
+	<div class="{{ self.container_classes }}">
+		<div class="row">
+			<div class="col-12">
+				<ul class="{{ self.filter_ul_classes }}">
+					<li class="nav active"><a href="javascript:void(0);" data-filter="*"
+					                          class="light-gray-text-link text-very-small">All</a></li>
+					{% for f in filters_decorated %}
+						<li class="nav"><a href="javascript:void(0);" data-filter=".{{ f.slug }}"
+						                   class="light-gray-text-link text-very-small">{{ f.label }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="{{ self.grid_container_classes }}">
+		<div class="row">
+			<div class="col-12 filter-content overflow-hidden">
+				<ul class="{{ self.grid_ul_classes }}">
+					<li class="grid-sizer"></li>
+
+					{% for it in items_decorated %}
+						<li class="{{ it.li_classes }}"{% if it.wow_delay %} data-wow-delay="{{ it.wow_delay }}"{% endif %}>
+							{% if it.item.page %}
+								<a href="{% pageurl it.item.page %}">
+							{% elif it.item.link_url %}
+								<a href="{{ it.item.link_url }}">
+							{% else %}
+								<a href="#">
+							{% endif %}
+							<figure>
+								<div class="portfolio-img">
+									{% if it.item.image %}
+										{% image it.item.image fill-800x650 as rend %}
+										<img src="{{ rend.url }}" alt=""/>
+									{% else %}
+										<img src="{{ it.item.image_fallback_url }}" alt=""/>
+									{% endif %}
+								</div>
+								<figcaption>
+									<div class="portfolio-hover-main text-center last-paragraph-no-margin">
+										<div class="portfolio-hover-box align-middle">
+											<div class="portfolio-hover-content position-relative">
+													<span
+															class="font-weight-600 alt-font text-uppercase margin-one-bottom d-block text-extra-dark-gray">{{ it.item.title }}</span>
+												{% if it.item.subtitle %}
+													<p class="text-medium-gray text-uppercase text-extra-small">{{ it.item.subtitle }}</p>{% endif %}
+											</div>
+										</div>
+									</div>
+								</figcaption>
+							</figure>
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- end portfolio section -->

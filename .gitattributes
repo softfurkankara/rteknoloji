@@ -1,0 +1,6 @@
+# Exclude third-party vendor assets in Pofo theme from GitHub language statistics
+# See: https://github.com/github/linguist#overrides
+
+# Mark everything under this path as vendored so it doesn't count toward language %
+backend/pofo/static/pofo/vendor/* linguist-vendored
+backend/pofo/static/pofo/vendor/**/* linguist-vendored

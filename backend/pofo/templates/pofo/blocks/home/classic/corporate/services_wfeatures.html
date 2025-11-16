@@ -1,0 +1,61 @@
+{% load wagtailimages_tags %}
+<!-- start section -->
+<section class="{{ self.section_classes }}">
+  <div class="{{ self.container_classes }}">
+    <div class="{{ self.intro_row_classes }}">
+      <div class="{{ self.left_col_classes }}">
+        {% if self.left_image %}
+          {% image self.left_image fill-900x650 as rend %}
+          <img src="{{ rend.url }}" alt="{{ self.left_image_alt }}" class="w-100">
+        {% else %}
+          <img src="{{ self.left_image_fallback_url }}" alt="{{ self.left_image_alt }}" class="w-100">
+        {% endif %}
+      </div>
+      <div class="{{ self.right_col_classes }}"{% if self.right_wow_delay %} data-wow-delay="{{ self.right_wow_delay }}"{% endif %}>
+        <div class="{{ self.right_inner_classes }}">
+          {% if self.eyebrow %}
+            <span class="{{ self.eyebrow_classes }}">{{ self.eyebrow }}</span>
+          {% endif %}
+          {% if self.heading %}
+            <h5 class="{{ self.heading_classes }}">{{ self.heading }}</h5>
+          {% endif %}
+          {% if self.text %}
+            <p>{{ self.text }}</p>
+          {% endif %}
+          {% if self.button_label %}
+            {% if self.button_page %}
+              <a href="{{ self.button_page.url }}" class="{{ self.button_classes }}">
+                <i class="{{ self.button_icon_classes }}" aria-hidden="true"></i> {{ self.button_label }}
+              </a>
+            {% elif self.button_url %}
+              <a href="{{ self.button_url }}" class="{{ self.button_classes }}">
+                <i class="{{ self.button_icon_classes }}" aria-hidden="true"></i> {{ self.button_label }}
+              </a>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="{{ self.divider_classes }}"></div>
+
+    <div class="{{ self.features_row_classes }}">
+      {% for it in features_decorated %}
+        <!-- start features box item -->
+        <div class="{{ it.col_classes }}"{% if it.wow_delay %} data-wow-delay="{{ it.wow_delay }}"{% endif %}>
+          <div class="feature-box-5 position-relative">
+            <i class="{{ it.item.icon_class }}"></i>
+            <div class="feature-content">
+              <div class="text-extra-dark-gray margin-10px-bottom alt-font font-weight-600">{{ it.item.title }}</div>
+              {% if it.item.text %}
+                <p class="{{ self.feature_text_width_classes }}">{{ it.item.text }}</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <!-- end features box item -->
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- end section -->

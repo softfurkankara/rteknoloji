@@ -1,0 +1,74 @@
+{% extends 'generic_inner_content.html' %}
+{% load static %}
+{% load i18n %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailembeds_tags %}
+{% block level_3_inner_content %}
+    <style>
+        .blog-post {
+            min-height: 450px;
+        }
+
+        .blog-post.no-thumbnail {
+            min-height: 200px;
+        }
+    </style>
+    {% if page.get_children.live %}
+        <!-- start post content section -->
+        <section class="wow animate__fadeIn">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 blog-content">
+                        <ul class="blog-grid blog-wrapper grid grid-loading grid-3col xl-grid-3col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col hover-option4 blog-post-style3 gutter-extra-large">
+                            <li class="grid-sizer"></li>
+
+                            {% for item in page.get_children.live %}
+                                <!-- start post item -->
+                                <li class="grid-item last-paragraph-no-margin text-center text-sm-start wow animate__fadeInUp">
+                                    <div class="blog-post bg-light-gray {% if not item.specific.thumbnail_image %}no-thumbnail{% endif %}">
+                                        <div class="blog-post-images overflow-hidden position-relative">
+                                            <a href="{{ item.url }}">
+                                                {% if item.specific.thumbnail_image %}
+
+                                                    {% image item.specific.thumbnail_image fill-900x650 as img_b %}
+                                                    <img src="{{ img_b.file.url }}" alt="">
+                                                    <div class="blog-hover-icon"><span
+                                                            class="text-extra-large font-weight-300">+</span></div>
+                                                {% endif %}
+                                            </a>
+                                        </div>
+                                        <div class="post-details padding-40px-all md-padding-20px-all">
+                                            <a href="{{ item.url }}"
+                                               class="alt-font post-title text-medium text-extra-dark-gray w-100 d-block lg-w-100 margin-15px-bottom">{{ item.title }}</a>
+                                            <p>{{ item.specific.description|richtext|striptags|truncatechars:30 }}.</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- end post item -->
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- end blog content section -->
+    {% endif %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

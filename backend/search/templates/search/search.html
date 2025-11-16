@@ -1,0 +1,55 @@
+{% extends 'generic_inner_content.html' %}
+{% load static %}
+{% load i18n %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailembeds_tags %}
+
+{% block level_3_inner_content %}
+    {% if search_results %}
+        <!-- start blog content section -->
+        <section>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <article class="col-xl-9 col-lg-8 right-sidebar md-margin-60px-bottom sm-margin-40px-bottom">
+                        <ul style="list-style:none; padding-left:0; margin:0;">
+                            {% for result in search_results %}
+                                <li>
+                                    <!-- start post item -->
+                                    <div class="blog-post-content d-flex align-items-center flex-wrap margin-60px-bottom padding-60px-bottom border-bottom border-color-extra-light-gray md-margin-30px-bottom md-padding-30px-bottom text-center text-md-start md-no-border">
+                                        {% if result.specific.thumbnail_image %}
+                                            {% image result.specific.thumbnail_image fill-1200x840 as tmb_img %}
+                                            <div class="col-lg-5 blog-image p-0 md-margin-30px-bottom sm-margin-20px-bottom margin-45px-right md-no-margin-right">
+                                                <a href="{% pageurl result %}"><img
+                                                        src="{{ tmb_img.file.url }}"
+                                                        alt=""></a>
+                                            </div>
+                                        {% else %}
+                                        {% endif %}
+
+                                        <div class="col-lg-6 blog-text p-0">
+                                            <div class="content margin-20px-bottom md-no-padding-left ">
+                                                <a href="{% pageurl result %}"
+                                                   class="text-extra-dark-gray margin-5px-bottom alt-font text-extra-large font-weight-600 d-inline-block">{{ result }}</a>
+                                                <p class="m-0 w-95 lg-w-100">
+                                                    {{ result.search_description|richtext }}</p>
+                                            </div>
+                                            <a class="btn btn-very-small btn-dark-gray text-uppercase"
+                                               href="{% pageurl result %}">{% translate 'Browse' %}</a>
+                                        </div>
+                                    </div>
+                                    <!-- end post item -->
+                                </li>
+                            {% endfor %}
+                        </ul>
+
+                    </article>
+
+                </div>
+            </div>
+        </section>
+        <!-- end blog content section -->
+
+    {% elif search_query %}
+        No results found
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,64 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+{# Expect: value.eyebrow, value.heading, value.image, value.items, block_uid #}
+
+<section
+		{% if value.anchor_id %}id="{{ value.anchor_id }}"{% endif %}
+		class="{{ value.section_classes }}"
+		style="visibility: visible; animation-name: fadeIn;"
+>
+	<div class="container-fluid">
+		<div class="row row-cols-1 row-cols-lg-2">
+			<div class="{{ value.left_col_classes }}" style="visibility: visible; animation-name: fadeInLeft;">
+				<h5 class="alt-font text-extra-dark-gray text-center text-lg-start margin-eight-bottom md-margin-40px-bottom sm-margin-30px-bottom font-weight-600">
+					{% if value.eyebrow %}
+						<span class="font-weight-300 d-block sm-margin-15px-bottom">{{ value.eyebrow }}</span>
+					{% endif %}
+					{{ value.heading }}
+				</h5>
+
+				<div
+						class="{{ value.accordion_style_classes }}"
+						id="accordion-{{ block_uid }}"
+						data-active-icon="fa-angle-up"
+						data-inactive-icon="fa-angle-down"
+				>
+					{% for item in value.items %}
+						{% with num=forloop.counter|stringformat:"02d" %}
+							{% with panel_id="collapse-"|add:block_uid|add:"-"|add:num %}
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<a class="accordion-toggle"
+										   data-bs-toggle="collapse"
+										   data-bs-parent="#accordion-{{ block_uid }}"
+										   href="#{{ panel_id }}">
+											<div class="panel-title">
+												<span class="alt-font font-weight-600 text-deep-pink tab-tag">{{ num }}</span>
+												<span class="text-extra-dark-gray sm-w-80 d-inline-block">{{ item.title }}</span>
+												{% if item.open_by_default %}
+													<i class="fa-solid fa-angle-up text-extra-dark-gray"></i>
+												{% else %}
+													<i class="fa-solid fa-angle-down text-extra-dark-gray"></i>
+												{% endif %}
+											</div>
+										</a>
+									</div>
+									<div id="{{ panel_id }}"
+									     class="panel-collapse collapse {% if item.open_by_default %}show{% endif %}"
+									     data-bs-parent="#accordion-{{ block_uid }}">
+										<div class="panel-body">
+											{{ item.body|richtext }}
+										</div>
+									</div>
+								</div>
+							{% endwith %}
+						{% endwith %}
+					{% endfor %}
+				</div>
+			</div>
+
+			<div class="{{ value.right_col_classes }}" style="visibility: visible; animation-name: fadeInRight;
+					{% image value.image original as bg %}background-image: url('{{ bg.url }}');">
+			</div>
+		</div>
+	</div>
+</section>

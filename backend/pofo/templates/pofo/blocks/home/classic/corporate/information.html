@@ -1,0 +1,40 @@
+{% load wagtailimages_tags wagtailcore_tags %}
+
+<!-- start information section -->
+<section class="{{ self.section_classes }}">
+  <div class="{{ self.container_classes }}">
+    <div class="{{ self.row_classes }}">
+      <div class="{{ self.left_col_classes }}">
+        <h5 class="alt-font text-extra-dark-gray font-weight-600">{{ self.heading }}</h5>
+
+        <ul class="{{ self.bullet_list_classes }}">
+          {% for li in self.bullets %}
+            <li>{{ li }}</li>
+          {% endfor %}
+        </ul>
+
+        {% if self.button_label %}
+          {% if self.button_page %}
+            <a href="{% pageurl self.button_page %}" class="{{ self.button_classes }}">
+              <i class="{{ self.button_icon_classes }}" aria-hidden="true"></i>{{ self.button_label }}
+            </a>
+          {% elif self.button_url %}
+            <a href="{{ self.button_url }}" class="{{ self.button_classes }}">
+              <i class="{{ self.button_icon_classes }}" aria-hidden="true"></i>{{ self.button_label }}
+            </a>
+          {% endif %}
+        {% endif %}
+      </div>
+
+      <div class="{{ self.right_col_classes }}">
+        {% if self.image %}
+          {% image self.image original as rend %}
+          <img src="{{ rend.url }}" alt="{{ self.image_alt }}" class="{{ self.image_classes }}">
+        {% else %}
+          <img src="{{ self.image_fallback_url }}" alt="{{ self.image_alt }}" class="{{ self.image_classes }}">
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end information section -->

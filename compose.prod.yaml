@@ -1,0 +1,58 @@
+volumes:
+  rteknoloji_static_volume: {}
+  rteknoloji_media_volume: {}
+  rteknoloji_prod_db: {}
+
+services:
+  rteknoloji:
+    platform: linux/amd64
+    container_name: rteknoloji
+    build:
+      context: ./backend
+      dockerfile: prod.Dockerfile
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py collectstatic --no-input &&
+             gunicorn rteknoloji.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - ./backend:/app
+      - ./logs:/app/logs
+      - rteknoloji_static_volume:/app/staticfiles
+      - rteknoloji_media_volume:/app/mediafiles
+    environment:
+      DB_MAIN_NAME: rteknoloji_main_db
+      DB_MAIN_USER: rteknoloji_dbusr
+      DB_MAIN_PASSWORD: pass123456*
+      DB_MAIN_HOST: db_rteknoloji
+      DB_MAIN_PORT: 5432
+      DEBUG: False
+    ports:
+      - "8072"
+    depends_on:
+      db_rteknoloji:
+        condition: service_healthy
+    networks:
+      - my-network
+
+  db_rteknoloji:
+    image: postgres
+    restart: always
+    volumes:
+      - rteknoloji_prod_db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: rteknoloji_main_db
+      POSTGRES_USER: rteknoloji_dbusr
+      POSTGRES_PASSWORD: pass123456*
+    ports:
+      - "5435:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rteknoloji_dbusr -d rteknoloji_main_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    external: true

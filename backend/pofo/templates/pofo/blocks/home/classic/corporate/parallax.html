@@ -1,0 +1,55 @@
+{% load wagtailimages_tags %}
+<!-- start parallax section -->
+<section class="{{ self.section_classes }}" data-parallax-background-ratio="{{ self.background_ratio }}"
+  {% if self.background_image %}
+    {% image self.background_image original as bg %}
+    style="background-image: url('{{ bg.url }}')"
+  {% elif self.background_fallback_url %}
+    style="background-image: url('{{ self.background_fallback_url }}')"
+  {% endif %}
+>
+  {% if self.show_overlay %}
+    <div class="{{ self.overlay_classes }}"></div>
+  {% endif %}
+  <div class="{{ self.container_classes }} home classic corporate">
+    <div class="{{ self.row_classes }}">
+      <div class="{{ self.left_col_classes }}">
+        {% if self.left_image %}
+          {% image self.left_image fill-1200x800 as rend %}
+          <img src="{{ rend.url }}" alt="{{ self.left_image_alt }}" class="{{ self.left_image_classes }}">
+        {% elif self.left_image_fallback_url %}
+          <img src="{{ self.left_image_fallback_url }}" alt="{{ self.left_image_alt }}" class="{{ self.left_image_classes }}">
+        {% endif %}
+      </div>
+      <div class="{{ self.right_col_classes }}"{% if self.right_wow_delay %} data-wow-delay="{{ self.right_wow_delay }}"{% endif %}>
+        <div class="{{ self.right_inner_classes }}">
+          {% if self.heading %}
+            <h4 class="{{ self.heading_classes }}">{{ self.heading }}</h4>
+          {% endif %}
+          {% if self.text %}
+            <p>{{ self.text }}</p>
+          {% endif %}
+          {% if self.bullets %}
+            <ul class="{{ self.bullet_list_classes }}">
+              {% for li in self.bullets %}
+                <li>{{ li }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+          {% if self.button_label %}
+            {% if self.button_page %}
+              <a href="{{ self.button_page.url }}" class="{{ self.button_classes }}">
+                <i class="{{ self.button_icon_classes }}" aria-hidden="true"></i>{{ self.button_label|upper }}
+              </a>
+            {% elif self.button_url %}
+              <a href="{{ self.button_url }}" class="{{ self.button_classes }}">
+                <i class="{{ self.button_icon_classes }}" aria-hidden="true"></i>{{ self.button_label|upper }}
+              </a>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end parallax section -->

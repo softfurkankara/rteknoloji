@@ -1,0 +1,47 @@
+{% load wagtailimages_tags %}
+
+<section class="{{ self.section_classes }}">
+  <div class="{{ self.container_classes }}">
+    <div class="{{ self.header_wrapper_classes }}">
+      <div class="{{ self.header_col_classes }}">
+        {% if self.eyebrow %}
+          <div class="alt-font margin-5px-bottom text-uppercase text-small text-medium-gray">{{ self.eyebrow }}</div>
+        {% endif %}
+        <h5 class="{{ self.heading_classes }}">{{ self.heading }}</h5>
+        <span class="{{ self.separator_classes }}"></span>
+      </div>
+    </div>
+
+    <div class="{{ self.grid_row_classes }}">
+      {% for it in items_decorated %}
+        <div class="{{ it.col_classes }}"{% if it.wow_delay %} data-wow-delay="{{ it.wow_delay }}"{% endif %}>
+          <figure>
+            <div class="feature-box-content sm-w-100">
+              <div class="feature-box-image">
+                {% if it.item.image %}
+                  {% image it.item.image fill-900x650 as rend %}
+                  <img src="{{ rend.url }}" alt="{{ it.item.title }}">
+                {% else %}
+                  <img src="{{ it.item.image_fallback_url }}" alt="{{ it.item.title }}">
+                {% endif %}
+              </div>
+              <div class="hover-content bg-deep-pink d-flex justify-content-center align-items-center">
+                <div class="padding-twelve-lr">
+                  {% if it.item.hover_text %}
+                    <span class="text-white-2 d-inline-block text-center">{{ it.item.hover_text }}</span>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            <figcaption>
+              <div class="text-center margin-25px-top">
+                <div class="text-extra-dark-gray alt-font font-weight-600">{{ it.item.title }}</div>
+                {% if it.item.statline %}<p>{{ it.item.statline }}</p>{% endif %}
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

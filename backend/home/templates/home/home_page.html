@@ -1,0 +1,525 @@
+{% extends "generic.html" %}
+{% load static %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block body_class %}template-homepage{% endblock %}
+
+{% block extra_css %}
+
+{% endblock extra_css %}
+
+{% block inner_content %}
+    {% if messages %}
+        <div class="container mt-3">
+            {% for message in messages %}
+                <div style="position: fixed; top: 10px; left: 50%; transform: translateX(-50%); z-index: 9999;"
+                     class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+
+
+        </div>
+    {% endif %}
+
+    {% for block in page.body %}
+        {% if block.block_type == 'slider_section' %}
+            <section class="p-0 main-slider wow animate__fadeIn">
+                <div class="swiper full-screen md-landscape-h-580px sm-h-500px white-move"
+                     data-slider-options='{
+                     "loop": true,
+                     "slidesPerView": "1",
+                     "allowTouchMove":true,
+                     "autoplay": {
+                        "delay": 5000,
+                        "disableOnInteraction": false },
+                     "keyboard": {
+                        "enabled": true,
+                        "onlyInViewport": true },
+                     "navigation": {
+                        "nextEl": ".swiper-button-next",
+                        "prevEl": ".swiper-button-prev" },
+                     "pagination": {
+                        "el": ".swiper-pagination-01", "clickable": true } }'>
+                    <div class="swiper-wrapper">
+                        {% for slide in block.value %}
+                            <!-- start slider item -->
+                            {% if slide.image %}
+                                {% image slide.image fill-1920x1080 as b_img %}
+                                <div class="swiper-slide cover-background"
+                                     style="background-image:url('{{ b_img.file.url }}');">
+                                    <div class="opacity-extra-medium bg-black"></div>
+                                    <div class="container position-relative h-100">
+                                        <div class="row h-100">
+                                            <div class="col-12
+                                                        d-flex flex-column
+                                                        justify-content-center
+                                                        text-center">
+                                                {% if slide.main_title %}
+                                                    <h6 class="text-very-light-gray
+                                                           padding-ten-lr font-weight-300
+                                                           margin-two-bottom md-margin-four-bottom
+                                                           sm-margin-15px-bottom">
+                                                        {{ slide.main_title }}
+                                                    </h6>
+                                                {% endif %}
+                                                {% if slide.sub_title %}
+                                                    <div class="alt-font text-white-2
+                                                                text-uppercase font-weight-700
+                                                                letter-spacing-minus-0
+                                                                title-extra-large margin-two-bottom
+                                                                w-70 mx-auto lg-w-80 md-margin-four-bottom
+                                                                sm-w-90 sm-margin-25px-bottom
+                                                                sm-letter-spacing-0">
+                                                        {{ slide.sub_title }}
+                                                    </div>
+                                                {% endif %}
+                                                {% if slide.link %}
+                                                    <div class="btn-dual">
+                                                        {% for link_group in slide.link %}
+                                                            {% for item in link_group %}
+                                                                {% if item.block_type == 'internal_link' and item.value.internal_link %}
+                                                                    <a href="{{ item.value.internal_link.url }}"
+                                                                       class="btn btn-transparent-white btn-small sm-margin-two-all">
+                                                                        {{ item.value.link_text }}
+                                                                    </a>
+                                                                {% elif item.block_type == 'external_link' and item.value.external_link %}
+                                                                    <a href="{{ item.value.external_link }}"
+                                                                       class="btn btn-transparent-white btn-small sm-margin-two-all"
+                                                                       target="_blank" rel="noopener">
+                                                                        {{ item.value.link_text }}
+                                                                    </a>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        {% endfor %}
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            <!-- end slider item -->
+                        {% endfor %}
+                    </div>
+                    <!-- start slider pagination -->
+                    <div class="swiper-pagination
+                                swiper-pagination-01
+                                swiper-pagination-square
+                                swiper-pagination-white">
+                    </div>
+                    <!-- start slider navigation -->
+                    <!-- <div class="swiper-button-next light"><i class="ti-angle-right"></i></div>
+          <div class="swiper-button-prev light"><i class="ti-angle-left"></i></div> -->
+                    <!-- end slider navigation -->
+                </div>
+            </section>
+        {% elif block.block_type == 'home_about_section' %}
+            {% image  block.value.background_image fill-1920x1080 as b_img %}
+            <section
+                    class="wow animate__fadeIn overflow-hidden cover-background md-no-background-img bg-medium-light-gray"
+                    style="background-image: url('{% if b_img %}{{ b_img.file.url }}{% else %}https://via.placeholder.com/1920x800{% endif %}')">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-6 offset-lg-6 wow animate__fadeIn">
+                            <div class="row m-0">
+                                <div class="col-12 text-center text-lg-start sm-no-padding-lr last-paragraph-no-margin margin-60px-bottom md-margin-30px-bottom">
+                        <span class="text-medium text-deep-pink alt-font margin-10px-bottom d-inline-block">
+                            {{ block.value.heading_spacer|default:"Endüstriyel otomasyonun geleceğini şekillendiriyoruz" }}
+                        </span>
+                                    <h5 class="alt-font text-extra-dark-gray font-weight-600">
+                                        {{ block.value.main_heading|default:"Akıllı sistemlerle üretimi daha verimli, güvenli ve sürdürülebilir hale getiriyoruz" }}
+                                    </h5>
+                                    <p class="w-90 md-w-100">
+                                        {{ block.value.paragraph|richtext|default:"Rintech Robotic, endüstriyel otomasyon, robotik entegrasyon ve özel makine sistemleri alanında yenilikçi çözümler sunan bir mühendislik firmasıdır. Misyonumuz, işletmelerin üretim süreçlerini optimize ederek verimliliği artırmak, insan gücünü destekleyen akıllı teknolojilerle güvenli ve sürdürülebilir bir gelecek inşa etmektir." }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row row-cols-1 row-cols-lg-2 row-cols-sm-2 m-0">
+                                {% for item in block.value.features_items %}
+                                    <div class="col text-center text-lg-start xs-margin-40px-bottom xs-no-padding-lr wow animate__fadeInUp last-paragraph-no-margin"
+                                         {% if forloop.counter == 2 %}data-wow-delay="0.2s"{% endif %}>
+                                        <i class="
+                                                {{ item.icon_class|default:'icon-tools' }} icon-extra-medium text-deep-pink margin-20px-bottom"></i>
+                                        <div class="alt-font text-extra-dark-gray font-weight-600 margin-5px-bottom">
+                                            {{ item.title|default:"Modern Mühendislik Altyapısı" }}
+                                        </div>
+                                        <p class="d-inline-block w-80 lg-w-90 md-w-100 xs-w-90">
+                                            {{ item.description|default:"Robotik sistemler, PLC tabanlı kontrol altyapısı ve özel yazılım entegrasyonlarıyla üretim süreçlerinizi dijitalleştiriyoruz." }}
+                                        </p>
+                                    </div>
+                                    {% empty %}
+                                    <!-- Default feature items (when none are added in CMS) -->
+                                    <div class="col text-center text-lg-start xs-margin-40px-bottom xs-no-padding-lr wow animate__fadeInUp last-paragraph-no-margin">
+                                        <i class="icon-tools icon-extra-medium text-deep-pink margin-20px-bottom"></i>
+                                        <div class="alt-font text-extra-dark-gray font-weight-600 margin-5px-bottom">
+                                            Modern Mühendislik Altyapısı
+                                        </div>
+                                        <p class="d-inline-block w-80 lg-w-90 md-w-100 xs-w-90">
+                                            Yüksek hassasiyetli robotik sistemler, PLC tabanlı kontrol altyapısı ve özel
+                                            yazılım entegrasyonlarıyla üretim süreçlerinizi dijitalleştiriyoruz.
+                                        </p>
+                                    </div>
+                                    <div class="col text-center text-lg-start xs-no-padding-lr wow animate__fadeInUp last-paragraph-no-margin"
+                                         data-wow-delay="0.2s">
+                                        <i class="icon-layers icon-extra-medium text-deep-pink margin-20px-bottom"></i>
+                                        <div class="alt-font text-extra-dark-gray font-weight-600 margin-5px-bottom">
+                                            Anahtar Teslim Otomasyon Çözümleri
+                                        </div>
+                                        <p class="d-inline-block w-80 lg-w-90 md-w-100 xs-w-90">
+                                            İhtiyaç analizi, tasarım, üretim, kurulum ve devreye alma süreçlerinin
+                                            tamamını tek çatı altında yönetiyoruz.
+                                        </p>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% elif block.block_type == 'about_section' %}
+            <!-- start feature box section -->
+            <section class="wow animate__fadeIn text-center text-md-start">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-md-3 row-cols-sm-2 justify-content-center">
+                        {% for item in block.value.features_items %}
+                            <!-- start features box item -->
+                            <div class="col text-center
+                                        text-md-start sm-margin-40px-bottom wow
+                                        animate__fadeInUp last-paragraph-no-margin">
+                                <div class="row m-0">
+                                    <div class="col-lg-3 col-md-4 ps-0 sm-no-padding-right">
+                                        <i class="{{ item.icon }}"></i>
+                                        <span class="separator-line-verticle-large
+                                                     margin-ten-right bg-deep-pink float-end
+                                                     align-top margin-two-top d-none d-md-inline-block">
+
+                                        </span>
+                                    </div>
+                                    <div class="col-lg-9 col-md-8 md-no-padding-lr">
+                                        <span class="text-medium margin-four-bottom
+                                                    text-extra-dark-gray alt-font d-block">
+                                            {{ item.title }}
+                                        </span>
+                                        <p class="w-90 lg-w-100"> {{ item.description|richtext }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end features box item -->
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+            <!-- end feature box section -->
+        {% elif block.block_type == 'masonry_portfolio_section' %}
+            <!-- start section -->
+            <section class="p-0 wow animate__fadeIn text-center text-md-start">
+                <div class="container-fluid p-0">
+                    <div class="row g-0">
+                        {% image block.value.left_image fill-968x596 as l_img %}
+                        <div class="col-xl-6 col-lg-4 cover-background"
+                             style="background-image: url('{{ l_img.file.url }}')">
+                            <div class="md-h-500px sm-h-350px"></div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 bg-white last-paragraph-no-margin text-center text-lg-start">
+                            <div class="padding-80px-all xl-padding-40px-all md-padding-60px-all sm-padding-40px-all">
+                                <h5 class="alt-font font-weight-700 text-extra-dark-gray text-uppercase">{{ block.value.heading }}</h5>
+                                <div
+                                        class="separator-line-horrizontal-medium-thick bg-extra-dark-gray w-70 md-w-70 margin-25px-bottom md-margin-20px-bottom sm-w-50 mx-auto mx-lg-0 sm-margin-15px-bottom"></div>
+                                <p class="w-95 lg-w-100">{{ block.value.paragraph|richtext }}</p>
+                                <a href="{{ block.value.button_link }}"
+                                   class="btn btn-small btn-dark-gray
+                                          margin-40px-top md-margin-30px-top
+                                          sm-margin-15px-top">{{ block.value.button_text }}</a>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 cover-background"
+                                {% image block.value.right_image fill-820x596 as r_img %}
+                             style="background-image: url('{{ r_img.file.url }}')">
+                            <div class="md-h-500px sm-h-350px"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- end section -->
+        {% elif block.block_type == 'counter_section' %}
+            <!-- start counter_section -->
+            <section class="wow animate__fadeIn">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4">
+                        {% for item in block.value.items %}
+                            <div
+                                    class="col md-margin-five-bottom md-padding-ten-left sm-padding-15px-left sm-margin-30px-bottom wow animate__fadeInDown"
+                                    data-wow-delay="{{ forloop.counter0|add:'0.2'|floatformat:1 }}s">
+                                <i class="{{ item.icon_class }} icon-medium float-start text-medium-gray"></i>
+                                <div class="float-start padding-nine-left">
+                                    <h5 class="text-extra-dark-gray font-weight-300 margin-three-bottom counter"
+                                        data-speed="2000" data-to="{{ item.number }}">{{ item.number }}</h5>
+                                    <span class="text-small text-medium-gray text-uppercase d-block">{{ item.label }}</span>
+                                    <div class="separator-line-horrizontal-medium-light2 bg-deep-pink d-inline-block"></div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+            <!-- end counter_section -->
+        {% elif block.block_type == 'parallax_info_section' %}
+            <!-- start parallax section -->
+            {% image block.value.background_image fill-1920x1200 as b_img %}
+            <section class="parallax"
+                     data-parallax-background-ratio="{{ block.value.parallax_ratio|default:'0.6' }}"
+                     style="background-image:url('{{ b_img.file.url }}')">
+
+                {# ——— Parallax’ın koyu overlay katmanı ——— #}
+                <div class="{{ block.value.overlay_opacity_class }} {{ block.value.overlay_color }}"></div>
+
+                <div class="container-fluid position-relative">
+                    <div class="row row-cols-1 row-cols-lg-2 row-cols-md-1 align-items-center">
+
+                        {# ---------------- SOL GÖRSEL ---------------- #}
+                        <div class="col text-center md-margin-50px-bottom sm-margin-30px-bottom wow animate__fadeIn">
+                            {% image block.value.left_image fill-900x650 as l_img %}
+                            <img src="{{ l_img.file.url }}"
+                                 alt="{{ block.value.heading }}"
+                                 class="w-100">
+                        </div>
+
+                        {# ---------------- SAĞ METİN ---------------- #}
+                        <div class="col wow animate__fadeIn" data-wow-delay="0.2s">
+                            <div class="w-75 xl-w-85 lg-w-100 padding-three-lr sm-no-padding-lr">
+
+                                <h4 class="alt-font text-white-2 font-weight-600">
+                                    {{ block.value.heading }}
+                                </h4>
+
+                                {{ block.value.paragraph|richtext }}
+
+                                <ul class="p-0 list-style-4 margin-30px-bottom list-style-color">
+                                    {% for line in block.value.bullet_list %}
+                                        <li>{{ line }}</li>
+                                    {% endfor %}
+                                </ul>
+
+                                {% if block.value.button_link %}
+                                    <a href="{{ block.value.button_link }}"
+                                       class="btn btn-white btn-small text-extra-small border-radius-4
+                      margin-20px-tb md-no-margin-bottom">
+                                        <i class="fa-solid fa-circle-play icon-very-small margin-5px-right ms-0"
+                                           aria-hidden="true"></i>
+                                        {{ block.value.button_text }}
+                                    </a>
+                                {% endif %}
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <!-- end parallax section -->
+        {% elif block.block_type == 'clients_slider_section' %}
+            <!-- start clients slider section  -->
+            <section class="border-top border-color-extra-light-gray wow animate__fadeIn bg-light-gray"
+                     style="background-color: #e4e4e4;!important">
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col-12 position-relative">
+
+                            {# ---------- Swiper wrapper ---------- #}
+                            <div class="swiper text-center black-move wow animate__fadeIn"
+                                 data-slider-options='{
+                                   "slidesPerView": "1",
+                                   "loop": false,
+                                   "allowTouchMove": true,
+                                   "autoplay": { "delay": 3000, "disableOnInteraction": false },
+                                   "keyboard": { "enabled": true, "onlyInViewport": true },
+                                   "navigation": { "nextEl": ".swiper-button-next-1", "prevEl": ".swiper-button-prev-1" },
+                                   "pagination": { "el": ".swiper-pagination-1", "clickable": true },
+                                   "breakpoints": {
+                                     "1200": { "slidesPerView": "4" },
+                                     "992" : { "slidesPerView": "3" },
+                                     "768" : { "slidesPerView": "3" }
+                                   }
+                                 }'>
+
+                                <div class="swiper-wrapper">
+
+                                    {# --------- tek tek logolar --------- #}
+                                    {% for logo in block.value.logos %}
+                                        <div class="swiper-slide">
+                                            {% if logo.link %}
+                                                <a href="{{ logo.link }}">
+                                                    <img src="{{ logo.logo.file.url }}" alt="">
+                                                </a>
+                                            {% else %}
+                                                <img src="{{ logo.logo.file.url }}" alt="">
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+
+                                </div>
+                                {# /swiper-wrapper #}
+                                <br>
+                                <div class="swiper-pagination-1 swiper-pagination"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- end clients slider section -->
+        {% elif block.block_type == 'latest_blog_section' %}
+            <!-- start news section -->
+            <section class="wow animate__fadeIn">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-lg-5 margin-eight-bottom
+                                    md-margin-40px-bottom sm-margin-30px-bottom
+                                    text-center">
+                            <h5 class="alt-font text-extra-dark-gray
+                                       text-uppercase font-weight-700 mb-0">
+                                {{ block.value.heading }}
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 blog-content">
+                            <ul class="blog-simple blog-wrapper
+                                       grid grid-loading grid-4col
+                                       xl-grid-4col lg-grid-3col md-grid-2col
+                                       sm-grid-2col xs-grid-1col
+                                       gutter-extra-large">
+                                <li class="grid-sizer"></li>
+                                {% for post in block.value.posts %}
+                                    {% with p=post delay=forloop.counter0|stringformat:"d"|add:"0.2" %}
+                                        <!-- start post item -->
+                                        <li class="grid-item wow animate__fadeInUp">
+                                            <div class="blog-post blog-post-style2
+                                                        lg-margin-50px-bottom md-margin-30px-bottom
+                                                        xs-margin-15px-bottom">
+                                                <div class="post-details">
+                                                     <span class="text-extra-small
+                                                                  text-medium-gray text-uppercase
+                                                                  d-block margin-10px-bottom
+                                                                  md-margin-5px-bottom">
+                                                         {{ p.published_date|date:"d F Y" }}
+                                                     </span>
+                                                    <span class="text-large alt-font w-90
+                                                                 lg-w-100 margin-15px-bottom
+                                                                 d-block">
+                                                        <a href="{{ p.url }}"
+                                                           class="text-extra-dark-gray">
+                                                            {{ p.title }}
+                                                        </a>
+                                                    </span>
+                                                    <p class="w-90 sm-margin-15px-bottom sm-w-100">
+                                                        {{ p.excerpt|richtext }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- end post item -->
+                                    {% endwith %}
+
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- end news section -->
+        {% else %}
+            {% include_block block %}
+
+        {% endif %}
+
+    {% endfor %}
+    <style>
+        .blog-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .blog-thumb {
+            width: 100%;
+            height: 200px; /* Tüm görseller bu yükseklikte olur */
+            object-fit: cover; /* Kırpmayı dengeler */
+            border-bottom: 1px solid #eee;
+        }
+
+        .blog-card .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1.25rem;
+            flex-grow: 1;
+        }
+
+    </style>
+    {% for section in page.home_in_pages.all %}
+
+        <!-- latest blog section -->
+        <section class="latest-blog-section py-5 border-top">
+            <div class="container">
+
+                <!-- Üst başlık -->
+                <div class="row">
+                    <div class="col-12 text-center mb-5">
+                        <h5 class="text-uppercase alt-font text-extra-dark-gray fw-bold"> {{ section.showcase.specific.title }}</h5>
+                        <div class="separator-line bg-deep-pink mx-auto mt-2" style="width: 100px; height: 2px;"></div>
+                    </div>
+                </div>
+
+                <!-- Blog kartları -->
+                <div class="row g-4 d-flex flex-wrap justify-content-center" id="blog-wrapper">
+
+                    <!-- Kartlar döngüden gelecek -->
+                    {% for post in section.showcase.specific.get_children.live|slice:":4" %}
+                        <div class="col-xl-3 col-lg-4 col-md-6 d-flex">
+                            <div class="card blog-card flex-fill d-flex flex-column h-100 shadow-sm">
+
+                                {% if post.specific.thumbnail_image %}
+                                    <a href="{{ post.url }}" class="overflow-hidden">
+                                        <img src="{{ post.specific.thumbnail_image.file.url }}"
+                                             class="card-img-top blog-thumb"
+                                             alt="{{ post.title }}">
+                                    </a>
+                                {% endif %}
+
+
+                                <!-- İçerik -->
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <small class="text-uppercase text-muted mb-2">
+                                        {{ post.published_date|date:"d F Y" }}
+                                    </small>
+
+                                    <h6 class="card-title mb-2">
+                                        <a href="{{ post.url }}" class="text-dark text-decoration-none">
+                                            {{ post.title }}
+                                        </a>
+                                    </h6>
+
+                                    <hr class="my-3">
+
+                                    <p class="card-text text-muted mb-0">
+                                        {{ post.specific.description|richtext|striptags|truncatechars:100 }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+    {% endfor %}
+{% endblock inner_content %}

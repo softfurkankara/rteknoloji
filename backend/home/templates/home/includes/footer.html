@@ -1,0 +1,96 @@
+{% load i18n wagtailcore_tags wagtailimages_tags get_site_logo social_media_tags site_extras %}
+{% get_site_logo as page %}
+{% get_social_media_links as social_accounts %}
+{% get_sitemap_pages as sitemap_pages %}
+
+<footer class="footer-modern bg-extra-dark-gray text-white">
+    <div class="container py-5">
+        <div class="row">
+
+            <div class="col-lg-6 col-md-6">
+                <div class="row">
+                    {% for parent_page in sitemap_pages %}
+                        {% if parent_page.specific.in_sitemap %}
+                            <div class="col-lg-6 col-sm-6 mb-4">
+                                <h6 class="text-uppercase fw-bold mb-3 border-bottom border-secondary pb-2">
+                                    <a href="{% pageurl  parent_page %}" class="text-white text-decoration-none hover:text-deep-pink">
+                                        {{ parent_page.localized.title }}
+                                    </a>
+                                </h6>
+                                <ul class="list-unstyled">
+                                    {% for child in parent_page.get_children.live|slice:":4" %}
+                                        {% if child.specific.in_sitemap %}
+                                            <li class="mb-2">
+                                                <a href="{% pageurl child %}" class="text-muted text-decoration-none small hover:text-white">
+                                                    <i class="fa fa-angle-right me-1 text-deep-pink"></i>
+                                                    {{ child.localized.title|striptags|truncatechars:25 }}
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h6 class="text-uppercase fw-bold mb-3 border-bottom border-secondary pb-2" style="color: #e4e4e4 !important;">
+                    {% translate 'Our Contact Information' %}
+                </h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-2" style="color: #e4e4e4 !important;">
+                        <i class="fa fa-map-marker-alt text-deep-pink me-2"></i>
+                        Ramazanoğlu mah. Sultan sokak no:16 Pendik / İstanbul
+                    </li>
+                    <li class="mb-2">
+                        <i class="fa fa-envelope text-deep-pink me-2"></i>
+                        <a href="mailto:info@robopax.com.tr" class="text-muted text-decoration-none hover:text-white">
+                            info@rintechrobotics.com
+                        </a>
+                    </li>
+                    <li>
+                        <i class="fa fa-mobile-alt text-deep-pink me-2"></i>
+                        <a href="tel:+905399731811" class="text-muted text-decoration-none hover:text-white">
+                            +90 539 973 18 11
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 text-center text-md-start mb-4">
+                {% if page.logo %}
+                    {% image page.logo width-180 as logo_w %}
+                    <img src="{{ logo_w.file.url }}" alt="{{ page.title }}" class="mb-3" style="max-height: 90px;">
+                {% endif %}
+                <p class="text-muted small mb-0">{% translate 'Your Solution Partner' %}</p>
+                <p class="text-muted small mb-3">
+                    {% translate 'RinTech Robotics — We shape the future with smart manufacturing solutions.' %}
+                </p>
+                <div class="social-icons">
+                    {% for account in social_accounts %}
+                        <a href="{{ account.url }}" target="_blank" class="text-white me-3 fs-5">
+                            <i class="{{ account.icon }}"></i>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ⚙️ Alt Bilgi -->
+    <div class="border-top border-secondary py-3">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center text-center text-md-start small">
+            <div class="text-muted">
+                &copy; {% now "Y" %} RinTech Robotics. 
+            {% blocktranslate %}All rights reserved.{% endblocktranslate %}
+        </div>
+        <div class="text-muted">
+            {% blocktranslate %}This website was developed by RinTechRobotics.com
+            {% endblocktranslate %}
+        </div>
+    </div>
+</div>
+</footer>

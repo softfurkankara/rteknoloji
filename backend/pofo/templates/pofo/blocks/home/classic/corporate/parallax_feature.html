@@ -1,0 +1,40 @@
+{% load wagtailimages_tags %}
+<!-- start parallax feature box -->
+<section class="{{ self.section_classes }}">
+	<div class="{{ self.container_classes }}">
+		<div class="{{ self.row_classes }}">
+			<div class="{{ self.left_col_classes }}">
+				<div class="{{ self.heading_wrapper_classes }}">
+					<div class="{{ self.heading_col_classes }}">
+						<h4 class="{{ self.heading_classes }}">
+							{{ self.heading }}
+						</h4>
+					</div>
+				</div>
+
+				<div class="{{ self.features_row_classes }}">
+					{% for it in items_decorated %}
+						<div class="{{ it.col_classes }}"{% if it.wow_delay %} data-wow-delay="{{ it.wow_delay }}"{% endif %}>
+							<div class="feature-box-5 position-relative">
+								<i class="{{ it.item.icon_class }}"></i>
+								<div class="feature-content">
+									<div class="text-extra-dark-gray margin-5px-bottom alt-font font-weight-600">{{ it.item.title }}</div>
+									{% if it.item.text %}<p class="w-95 sm-w-100">{{ it.item.text }}</p>{% endif %}
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+
+			{% if self.right_background_image %}
+				{% image self.right_background_image original as bg %}
+				<div class="{{ self.right_col_classes }}" style="background-image:url('{{ bg.url }}');"></div>
+			{% else %}
+				<div class="{{ self.right_col_classes }}"
+				     style="background-image:url('{{ self.right_background_fallback_url }}');"></div>
+			{% endif %}
+		</div>
+	</div>
+</section>
+<!-- end parallax feature box -->

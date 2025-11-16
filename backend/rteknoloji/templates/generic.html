@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    {% block header %}
+        <!-- start header -->
+        <header>
+            {% include 'home/includes/side_navbar.html' %}
+        </header>
+        <!-- end header -->
+    {% endblock header %}
+    {% block inner_content %}
+    {% endblock inner_content %}
+
+    {% include 'home/includes/footer.html' %}
+
+{% endblock content %}

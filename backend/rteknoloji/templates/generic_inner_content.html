@@ -1,0 +1,41 @@
+{% extends "generic.html" %}
+{% load i18n %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block header %}
+    <header>
+        {% include 'home/includes/inner_side_navbar.html' %}
+    </header>
+{% endblock %}
+{% block inner_content %}
+    <!-- start page title section -->
+    <section class="wow animate__fadeIn bg-extra-dark-gray padding-35px-tb page-title-small top-space">
+        <div class="container position-relative">
+            <div class="row align-items-center">
+                <div class="col-xl-7 col-md-6 d-flex flex-column justify-content-center text-center text-md-start">
+                    <!-- start page title -->
+                    <h1 class="alt-font text-white font-weight-600 mb-0 text-uppercase">{{ page.title }}</h1>
+                    <!-- end page title -->
+                </div>
+                <div class="col-xl-5 col-md-6 alt-font breadcrumb justify-content-center justify-content-md-end text-small sm-margin-10px-top">
+                    <!-- breadcrumb -->
+                    <ul class="text-center text-md-start text-uppercase">
+                        <li><a href="/" class="text-white">Anasayfa</a></li>
+                        {% if page.get_parent %}
+                            <li style="color: white"><span class="text-white"> <a href="{{ page.get_parent.url }}"
+                                                                                  style="color: white">
+                            {{ page.get_parent.title }}</a></span></li>
+                        {% endif %}
+                        <li class="text-white"><a href="{{ page.url }}"
+                                                  style="color: white">
+                            {{ page.title|striptags|truncatechars:40 }}</a></li>
+                    </ul>
+                    <!-- end breadcrumb -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end page title section -->
+    {% block level_3_inner_content %}
+
+    {% endblock level_3_inner_content %}
+{% endblock inner_content %}

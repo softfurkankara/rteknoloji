@@ -1,0 +1,162 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+{# Outer section mirrors POFO skeleton; animations come from theme JS/CSS #}
+<!-- start slider section -->
+<section class="{{ self.section_classes|default:'' }}">
+	<article class="content">
+		<div id="{{ self.slider_dom_id }}_wrapper"
+		     class="rev_slider_wrapper fullwidthbanner-container"
+		     data-alias="classic4export"
+		     data-source="gallery"
+		     style="margin:0px auto;background-color:transparent;padding:0px;margin-top:0px;margin-bottom:0px;">
+			<!-- start revolution slider 5.4.1 fullwidth mode -->
+			<div id="{{ self.slider_dom_id }}"
+			     class="rev_slider fullwidthabanner"
+			     data-version="5.4.1"
+			     style="display:none;">
+				<ul>
+					{# Slides #}
+					{% for slide in self.slides %}
+						<li data-index="rs-{{ forloop.counter }}"
+						    data-transition="{{ slide.transition|default:'false' }}"
+						    data-slotamount="{{ slide.slotamount|default:'default' }}"
+						    data-hideafterloop="{{ slide.hideafterloop|default:0 }}"
+						    data-hideslideonmobile="{{ slide.hideslideonmobile|default:'off' }}"
+						    data-easein="{{ slide.easein|default:'Power4.easeInOut' }}"
+						    data-easeout="{{ slide.easeout|default:'Power4.easeInOut' }}"
+						    data-masterspeed="{{ slide.masterspeed|default:500 }}"
+						    data-thumb="{{ slide.thumb.url }}"
+						    data-rotate="{{ slide.rotate|default:0 }}"
+						    data-saveperformance="off">
+							{% if slide.dark_overlay %}
+								<div class="opacity-extra-medium bg-black position-relative z-index-1"></div>
+							{% endif %}
+
+							{# Background image as div (matches POFO approach) #}
+							{% image slide.background original as bg %}
+							<!-- main image -->
+							<img src="{{ bg.url }}"
+							     alt=""
+							     data-bgposition="center center"
+							     data-bgfit="cover"
+							     data-bgrepeat="no-repeat"
+							     data-bgparallax="1"
+							     class="rev-slidebg">
+
+							{# ---------- NEW: Background video layer ---------- #}
+							{% if slide.use_video %}
+								{% firstof slide.video_file.url slide.video_url as src %}
+								{% if src %}
+									<div class="rs-background-video-layer"
+									     data-videomp4="{{ src }}"
+									     data-videopreload="{{ slide.video_preload|default:'auto' }}"
+									     data-videoloop="{% if slide.video_loop %}loop{% else %}none{% endif %}"
+									     data-forcerewind="{% if slide.video_forcerewind %}on{% else %}off{% endif %}"
+									     data-videostartat="{{ slide.video_startat|default:0 }}"
+									     data-nextslideatend="true"
+									     data-videoattributes="{% if slide.video_autoplay %}autoplay;{% endif %}{% if slide.video_muted %}muted;{% endif %}{% if slide.video_playsinline %}playsinline;{% endif %}{% if slide.video_loop %}loop;{% endif %}">
+									</div>
+								{% endif %}
+							{% endif %}
+
+
+							{# Eyebrow #}
+							{% if slide.eyebrow %}
+								<div class="tp-caption {{ slide.eyebrow_classes|default:'NotGeneric-Title' }} tp-resizeme"
+								     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+								     data-y="['middle','middle','middle','middle']" data-voffset="['-115','-110','-90','-150']"
+								     data-fontsize="['12','12','12','12']"
+								     data-lineheight="['20','20','20','20']"
+								     data-width="none"
+								     data-height="none"
+								     data-whitespace="nowrap"
+								     data-type="text"
+								     data-responsive_offset="on"
+								     data-frames='[{"from":"y:50px;opacity:0;","speed":1000,"to":"o:1;","delay":300,"ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:2px 2px 2px 2px;"}]'
+								     data-textAlign="['center','center','center','center']"
+								     data-paddingtop="[10,10,10,10]"
+								     data-paddingright="[0,0,0,0]"
+								     data-paddingbottom="[10,10,10,10]"
+								     data-paddingleft="[0,0,0,0]"
+								     style="z-index: 7; white-space: nowrap; text-transform: uppercase; font-family:'Montserrat', sans-serif !important; font-weight: 500; letter-spacing:2px;">
+									{{ slide.eyebrow }}
+								</div>
+							{% endif %}
+
+							{# Main title #}
+							<div class="tp-caption {{ slide.title_classes|default:'NotGeneric-SubTitle' }} tp-resizeme"
+							     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+							     data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']"
+							     data-fontsize="['70','70','60','50']"
+							     data-lineheight="['75','75','60','60']"
+							     data-width="['100%','100%','100%','100%']"
+							     data-height="['auto','auto','auto','auto']"
+							     data-whitespace="['normal','normal','normal','normal']"
+							     data-type="text"
+							     data-responsive_offset="on"
+							     data-frames='[{"from":"y:50px;opacity:0;","speed":1000,"to":"o:1;","delay":600,"ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:2px 2px 2px 2px;"}]'
+							     data-textAlign="['center','center','center','center']"
+							     data-paddingtop="[10,10,10,10]"
+							     data-paddingright="[0,0,0,0]"
+							     data-paddingbottom="[10,10,10,10]"
+							     data-paddingleft="[0,0,0,0]"
+							     style="z-index: 8; white-space: nowrap; font-family:'Montserrat', sans-serif !important; font-weight: 600; letter-spacing: -1px;">
+								{{ slide.title|richtext }}
+							</div>
+
+							{# CTA button (internal page preferred over external URL) #}
+							{% if slide.cta %}
+								{% with target=slide.cta.page|default_if_none:None %}
+									{% if target %}
+										<a href="{{ target.url }}"
+										   class="{{ slide.cta.classes }}"
+										   data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+										   data-y="['middle','middle','middle','middle']" data-voffset="['130','130','120','180']"
+										   data-fontsize="['12','14','14','14']"
+										   data-whitespace="nowrap"
+										   data-visibility="['on', 'on', 'on', 'on']"
+										   data-type="text"
+										   data-color="['#FFFFFF']"
+										   data-responsive_offset="on"
+										   data-responsive="on"
+										   data-frames='[{"from":"y:150px;opacity:0;","speed":1500,"to":"o:1;","delay":900,"ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(0, 0, 0, 1.00);bc:rgba(255, 255, 255, 1.00);bw:2px 2px 2px 2px;"}]'
+										   data-textAlign="['inherit', 'inherit', 'right', 'center']"
+										   data-paddingtop="[6,6,6,6]"
+										   data-paddingright="[26,26,26,26]"
+										   data-paddingbottom="[6,6,6,6]"
+										   data-paddingleft="[26,26,26,26]"
+										   data-basealign="slide">
+											{{ slide.cta.label }}
+										</a>
+									{% elif slide.cta.url %}
+										<a href="{{ slide.cta.url }}"
+										   class="{{ slide.cta.classes }}"
+										   data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+										   data-y="['middle','middle','middle','middle']" data-voffset="['130','130','120','180']"
+										   data-fontsize="['12','14','14','14']"
+										   data-whitespace="nowrap"
+										   data-visibility="['on', 'on', 'on', 'on']"
+										   data-type="text"
+										   data-color="['#FFFFFF']"
+										   data-responsive_offset="on"
+										   data-responsive="on"
+										   data-frames='[{"from":"y:150px;opacity:0;","speed":1500,"to":"o:1;","delay":900,"ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(0, 0, 0, 1.00);bc:rgba(255, 255, 255, 1.00);bw:2px 2px 2px 2px;"}]'
+										   data-textAlign="['inherit', 'inherit', 'right', 'center']"
+										   data-paddingtop="[6,6,6,6]"
+										   data-paddingright="[26,26,26,26]"
+										   data-paddingbottom="[6,6,6,6]"
+										   data-paddingleft="[26,26,26,26]"
+										   data-basealign="slide">
+											{{ slide.cta.label }}
+										</a>
+									{% endif %}
+								{% endwith %}
+							{% endif %}
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<!-- end revolution slider -->
+		</div>
+	</article>
+</section>
+<!-- end slider section -->

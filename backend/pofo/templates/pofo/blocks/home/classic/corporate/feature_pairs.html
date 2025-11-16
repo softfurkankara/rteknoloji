@@ -1,0 +1,46 @@
+{% load wagtailimages_tags %}
+
+<!-- start feature pairs section -->
+<section class="{{ self.section_classes }}">
+	<div class="{{ self.container_classes }}">
+		<div class="{{ self.row_classes }}">
+			{% for it in pairs %}
+				{# LEFT: image #}
+				{% with v=it.pair %}
+					{% if v.background_image %}
+						{% image v.background_image original as bg %}
+						<div class="{{ it.image_classes }}"{% if it.image_delay %} data-wow-delay="{{ it.image_delay }}"{% endif %}
+						     style="background: transparent url('{{ bg.url }}')"></div>
+					{% else %}
+						<div class="{{ it.image_classes }}"{% if it.image_delay %} data-wow-delay="{{ it.image_delay }}"{% endif %}
+						     style="background: transparent url('{{ v.background_fallback_url }}')"></div>
+					{% endif %}
+				{% endwith %}
+
+				{# RIGHT: content #}
+				{% with v=it.pair %}
+					<div class="{{ it.content_classes }}"{% if it.content_delay %}
+					     data-wow-delay="{{ it.content_delay }}"{% endif %}>
+						<div class="padding-fifteen-all md-padding-thirteen-all sm-padding-eight-all xs-padding-30px-all w-100 home classic corporate">
+							{% if v.eyebrow %}
+								<div class="alt-font text-medium-gray margin-10px-bottom">
+									{{ v.eyebrow }}
+								</div>
+							{% endif %}
+							<div
+									class="alt-font text-extra-large margin-20px-bottom text-white-2 w-90 lg-w-100 sm-margin-15px-bottom">{{ v.heading }}</div>
+							{% if v.text %}<p>{{ v.text }}</p>{% endif %}
+							{% if v.button_url and v.button_label %}
+								<a href="{{ v.button_url }}" class="btn btn-transparent-white btn-small border-radius-4">
+									<i class="fa-solid fa-circle-play icon-very-small margin-5px-right ms-0"
+									   aria-hidden="true"></i>{{ v.button_label }}
+								</a>
+							{% endif %}
+						</div>
+					</div>
+				{% endwith %}
+			{% endfor %}
+		</div>
+	</div>
+</section>
+<!-- end feature pairs section -->

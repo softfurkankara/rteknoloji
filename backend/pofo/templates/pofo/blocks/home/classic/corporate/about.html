@@ -1,0 +1,79 @@
+{% load wagtailimages_tags %}
+{% if self.background_image %}
+	{% image self.background_image original as bg %}
+	{% with  bg.url as set_bg_url %}
+		<!-- start about section -->
+		<section class="{{ self.section_classes }}" style="background-image: url('{{ set_bg_url }}')">
+			<div class="container">
+				<div class="row">
+					<div class="{{ self.content_col_classes }}">
+						<div class="row m-0">
+							<div
+									class="col-12 text-center text-lg-start sm-no-padding-lr last-paragraph-no-margin margin-60px-bottom md-margin-30px-bottom">
+								{% if self.eyebrow %}
+									<span class="text-medium text-deep-pink alt-font margin-10px-bottom d-inline-block">
+								{{ self.eyebrow }}
+							</span>
+								{% endif %}
+								<h5 class="alt-font text-extra-dark-gray font-weight-600">{{ self.heading }}</h5>
+								{% if self.description %}<p class="w-90 md-w-100">{{ self.description }}</p>{% endif %}
+							</div>
+						</div>
+						<div class="row row-cols-1 row-cols-lg-2 row-cols-sm-2 m-0">
+							{% for item in self.features %}
+								<!-- start features box item -->
+								<div
+										class="col text-center text-lg-start xs-no-padding-lr wow animate__fadeInUp last-paragraph-no-margin"
+										{% if item.wow_delay %} data-wow-delay="{{ item.wow_delay }}"{% endif %}>
+									{% if item.icon_class %}<i class="{{ item.icon_class }}"></i>{% endif %}
+									<div class="alt-font text-extra-dark-gray font-weight-600 margin-5px-bottom">{{ item.title }}</div>
+									<p class="d-inline-block w-80 lg-w-90 md-w-100 xs-w-90">{{ item.text }}</p>
+								</div>
+								<!-- end features box item -->
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- end about section -->
+	{% endwith %}
+{% else %}
+	{% with self.background_fallback_url as set_bg_url %}
+		<!-- start about section -->
+		<section class="{{ self.section_classes }}" style="background-image: url('{{ set_bg_url }}')">
+			<div class="container">
+				<div class="row">
+					<div class="{{ self.content_col_classes }}">
+						<div class="row m-0">
+							<div
+									class="col-12 text-center text-lg-start sm-no-padding-lr last-paragraph-no-margin margin-60px-bottom md-margin-30px-bottom">
+								{% if self.eyebrow %}
+									<span class="text-medium text-deep-pink alt-font margin-10px-bottom d-inline-block">
+								{{ self.eyebrow }}
+							</span>
+								{% endif %}
+								<h5 class="alt-font text-extra-dark-gray font-weight-600">{{ self.heading }}</h5>
+								{% if self.description %}<p class="w-90 md-w-100">{{ self.description }}</p>{% endif %}
+							</div>
+						</div>
+						<div class="row row-cols-1 row-cols-lg-2 row-cols-sm-2 m-0">
+							{% for item in self.features %}
+								<!-- start features box item -->
+								<div
+										class="col text-center text-lg-start xs-no-padding-lr wow animate__fadeInUp last-paragraph-no-margin"
+										{% if item.wow_delay %} data-wow-delay="{{ item.wow_delay }}"{% endif %}>
+									{% if item.icon_class %}<i class="{{ item.icon_class }}"></i>{% endif %}
+									<div class="alt-font text-extra-dark-gray font-weight-600 margin-5px-bottom">{{ item.title }}</div>
+									<p class="d-inline-block w-80 lg-w-90 md-w-100 xs-w-90">{{ item.text }}</p>
+								</div>
+								<!-- end features box item -->
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- end about section -->
+	{% endwith %}
+{% endif %}

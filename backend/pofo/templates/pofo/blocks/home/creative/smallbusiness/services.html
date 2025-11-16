@@ -1,0 +1,24 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{# Render a POFO parallax hero with overlay #}
+<section
+		{% if value.anchor_id %}id="{{ value.anchor_id }}"{% endif %}
+		class="{{ value.section_classes }}"
+		data-parallax-background-ratio="{{ value.parallax_ratio }}"
+		{% image value.background fill-1920x1200 as bg %}
+		style="background-image: url('{{ bg.url }}'); visibility: visible; animation-name: fadeIn; background-position: {{ value.background_position }};"
+>
+	{% if value.show_overlay %}
+		<div class="{{ value.overlay_classes }}"></div>
+	{% endif %}
+
+	<div class="{{ value.container_classes }}">
+		<div class="{{ value.row_classes }}">
+			<div class="{{ value.col_classes }}">
+				<h4 class="{{ value.heading_classes }}">
+					{{ value.heading|richtext }}
+				</h4>
+			</div>
+		</div>
+	</div>
+</section>

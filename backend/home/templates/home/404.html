@@ -1,0 +1,42 @@
+{% extends "generic.html" %}
+{% load static %}
+{% load i18n %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block title %}Page not found{% endblock %}
+{% block body_class %}template-404{% endblock %}
+{% block inner_content %}
+
+    <!-- start page not found section -->
+    <section id="home" class="parallax p-0 mobile-height wow animate__fadeIn" data-parallax-background-ratio="0.5"
+             style="background-image:url('{% static 'images/parallax-bg31.jpg' %}');">
+        <div class="opacity-full bg-extra-dark-gray"></div>
+        <div class="container position-relative full-screen">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 text-center">
+                    <div class="bg-black-opacity-light w-50 mx-auto md-w-80 xs-w-95">
+                        <div class="padding-fifteen-all sm-padding-twelve-all xs-padding-25px-all">
+                            <span class="title-extra-large text-white-2 font-weight-600 d-block margin-30px-bottom sm-margin-10px-bottom">404!</span>
+                            <h6 class="text-uppercase text-deep-pink font-weight-600 alt-font d-block margin-5px-bottom">
+                                {% translate 'Page not found' %}</h6>
+                            <span class="text-medium-gray w-60 d-block mx-auto text-large md-w-100">{% translate 'The page you are looking for is not found.' %}</span>
+                            <hr>
+                            <a href="/"
+                               class="btn btn-transparent-white btn-medium text-extra-small border-radius-4"><i
+                                    class="ti-arrow-left margin-5px-right ms-0" aria-hidden="true"></i>{% translate 'Return to Home Page' %} </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end page not found section -->
+{% endblock inner_content %}
+
+
+
+
+
+
+
+
+

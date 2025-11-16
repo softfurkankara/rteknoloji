@@ -1,0 +1,55 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<section class="{{ value.section_classes }} homepage-info-boxes" style="visibility: visible; animation-name: fadeIn;">
+	<div class="{{ value.container_classes }}">
+		<div class="{{ value.row_classes }}">
+			{% for item in value.items %}
+				{# Decide col wrapper classes #}
+				{% with col_classes=value.col_classes %}
+					<div class="{{ col_classes }}">
+						<div class="feature-box-wrap {% if item.text_first %}md-swap-block{% endif %}">
+							{# TOP segment (order depends on text_first) #}
+							{% if item.text_first %}
+								{# TEXT first #}
+								<div
+										class="{{ value.text_wrapper_base }} {% if item.arrow == 'top' %}arrow-top{% else %}arrow-bottom{% endif %}">
+									<div class="{{ value.text_inner_classes }}">
+										<h6 class="{{ value.title_classes }}">{{ item.title }}</h6>
+										<p class="no-letter-spacing padding-two-lr line-height-26 sm-line-height-20 sm-no-padding-lr">
+											{{ item.text|richtext }}
+										</p>
+										{% if item.show_separator %}
+											<span class="{{ item.separator_class }}"></span>
+										{% endif %}
+									</div>
+								</div>
+								<div class="{{ value.img_wrapper_classes }}"
+										{% image item.image fill-1200x854 as bg %}
+										 style="background-image: url('{{ bg.url }}');">
+								</div>
+							{% else %}
+								{# IMAGE first #}
+								<div class="{{ value.img_wrapper_classes }}"
+										{% image item.image fill-1200x854 as bg %}
+										 style="background-image: url('{{ bg.url }}');">
+								</div>
+								<div
+										class="{{ value.text_wrapper_base }} {% if item.arrow == 'top' %}arrow-top{% else %}arrow-bottom{% endif %}">
+									<div class="{{ value.text_inner_classes }}">
+										<h6 class="{{ value.title_classes }}">{{ item.title }}</h6>
+										<p class="no-letter-spacing padding-two-lr line-height-26 sm-line-height-20 sm-no-padding-lr">
+											{{ item.text|richtext }}
+										</p>
+										{% if item.show_separator %}
+											<span class="{{ item.separator_class }}"></span>
+										{% endif %}
+									</div>
+								</div>
+							{% endif %}
+						</div>
+					</div>
+				{% endwith %}
+			{% endfor %}
+		</div>
+	</div>
+</section>

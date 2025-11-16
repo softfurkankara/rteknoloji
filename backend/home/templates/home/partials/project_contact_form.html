@@ -1,0 +1,24 @@
+{% load  i18n %}
+<section class="wow animate__fadeIn" id="start-your-project">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-7 col-md-9 col-sm-10 margin-eight-bottom md-margin-40px-bottom sm-margin-30px-bottom text-center last-paragraph-no-margin">
+                <h5 class="alt-font font-weight-700 text-extra-dark-gray text-uppercase">{% translate 'Get a Quote' %}</h5>
+            </div>
+        </div>
+        <form method="post" action="{% url 'home:project-contact' %}">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">{{ form.name }}</div>
+                <div class="col-md-6">{{ form.company_name }}</div>
+                <div class="col-md-6">{{ form.phone }}</div>
+                <div class="col-md-6">{{ form.email }}</div>
+                <div class="col-12">{{ form.comment }}</div>
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-transparent-dark-gray btn-large margin-20px-top">{% translate 'Get a Quote' %}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

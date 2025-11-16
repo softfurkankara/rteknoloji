@@ -1,0 +1,121 @@
+:root {
+    --base-color: #4f8fe6;
+    --dark-tyrianblue: #0d2b52;
+}
+
+.bg-extra-dark-gray {
+    background-image: linear-gradient(to left, #4f8fe6, #0d2b52)
+}
+
+.bg-dark-footer {
+    /*background-color: var(--base-color);*/
+    background-image: linear-gradient(to left, #4f8fe6, #0d2b52)
+}
+
+.title-extra-large {
+    font-size: 40px;
+!important;
+    line-height: 50px;
+!important;
+}
+
+/* ensure background video is visible above the poster */
+.tp-bgvideo {
+    opacity: 1 !important;
+    visibility: visible !important
+}
+
+/* fade poster once we explicitly start the video */
+.rev-slidebg.rev-slidebg-visible {
+    opacity: 0 !important
+}
+
+
+footer div {
+    color: lemonchiffon;
+}
+
+/* region Homepage */
+
+/* region Sliders */
+/* endregion Sliders */
+
+/* region Classic */
+/* region Corporate */
+div.home.classic.corporate li,
+div.home.classic.corporate > div {
+    color: #c7d7f5;
+}
+
+div.home.classic.corporate p {
+    color: #9fb1d8
+}
+
+/* endregion Corporate */
+/* endregion Classic */
+
+/* region Info Boxes */
+.homepage-info-boxes p[data-block-key] {
+    margin: 0;
+}
+
+/* endregion Info Boxes */
+/* endregion Homepage */
+
+/* region responsive */
+@media (min-width: 768px) {
+    .border-radius-200-md, .border-radius-200-lg, .border-radius-200-xl, .border-radius-200-xxl {
+        border-radius: 200px;
+    }
+}
+
+@media (max-width: 991px) {
+    nav.navbar.bootsnav .navbar-nav {
+        background-color: var(--dark-tyrianblue);
+    }
+}
+
+.footer-modern {
+    background-image: linear-gradient(to left, #4f8fe6, #0d2b52);
+    color: #fff;
+    font-family: "Inter", "Poppins", sans-serif;
+}
+
+.footer-modern a {
+    transition: all 0.3s ease;
+}
+
+.footer-modern a:hover {
+    color: #ff214f;
+}
+
+.footer-modern h6 {
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+
+.footer-modern .social-icons a {
+    transition: transform 0.3s ease;
+}
+
+.footer-modern .social-icons a:hover {
+    transform: scale(1.2);
+    color: #ff214f;
+}
+
+.footer-modern ul li a {
+    font-size: 13px;
+}
+
+.footer-modern .text-muted {
+    color: white !important;
+}
+
+@media (max-width: 767px) {
+    .footer-modern {
+        text-align: center;
+    }
+}
+
+
+/* endregion responsive */

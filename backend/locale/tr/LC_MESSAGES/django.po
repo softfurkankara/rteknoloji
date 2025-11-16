@@ -1,0 +1,598 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-10 18:03+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: home/models.py:96
+msgid "Enter the external link"
+msgstr "Dış bağlantıyı giriniz"
+
+#: home/models.py:100 home/models.py:111
+msgid "Enter the link text"
+msgstr "Bağlantı metnini giriniz"
+
+#: home/models.py:107
+msgid "Enter the internal link"
+msgstr "İç bağlantıyı giriniz"
+
+#: home/models.py:120
+msgid "Link"
+msgstr "Bağlantı"
+
+#: home/models.py:134 home/models.py:152 home/models.py:164
+msgid "Feature items"
+msgstr "Özellik öğeleri"
+
+#: home/models.py:143
+msgid "Banner Image can be 1950x750 px"
+msgstr "Afiş Resmi 1950x750 px olabilir"
+
+#: home/models.py:173
+msgid "Image can be 1950x750 px"
+msgstr "Resim 1950x750 px olabilir"
+
+#: home/models.py:178
+msgid "Image alt text (SEO)."
+msgstr "Resim alternatif metni (SEO)."
+
+#: home/models.py:183
+msgid "Image Column"
+msgstr "Resim Sütunu"
+
+#: home/models.py:194
+msgid "Small top label (e.g. “Build perfect websites”)."
+msgstr "Küçük üst etiket (örn: 'Mükemmel web siteleri oluşturun')."
+
+#: home/models.py:199
+msgid "Main heading text."
+msgstr "Ana başlık metni."
+
+#: home/models.py:203
+msgid "Supporting paragraph text."
+msgstr "Destekleyici paragraf metni."
+
+#: home/models.py:212
+msgid "Call-to-action link URL."
+msgstr "Eylem çağrısı bağlantı URL'si."
+
+#: home/models.py:217
+msgid "Content Column"
+msgstr "İçerik Sütunu"
+
+#: home/models.py:233
+msgid "Exactly four items: image, text, image, text."
+msgstr "Tam olarak dört öğe: resim, metin, resim, metin."
+
+#: home/models.py:238
+msgid "Image/Text Grid Section"
+msgstr "Resim/Metin Izgara Bölümü"
+
+#: home/models.py:249
+msgid "Slug used as CSS class, e.g. “web”"
+msgstr "CSS sınıfı olarak kullanılan slug, örn: 'web'"
+
+#: home/models.py:253
+msgid "Label shown in filter nav, e.g. “Web”"
+msgstr "Filtre gezintisinde gösterilen etiket, örn: 'Web'"
+
+#: home/models.py:258
+msgid "Category"
+msgstr "Kategori"
+
+#: home/models.py:265
+msgid "Add one or more categories"
+msgstr "Bir veya daha fazla kategori ekleyin"
+
+#: home/models.py:270
+msgid "Portfolio Item"
+msgstr "Portföy Öğesi"
+
+#: home/models.py:291
+msgid "Portfolio / Filterable Grid Section"
+msgstr "Portföy / Filtrelenebilir Izgara Bölümü"
+
+#: home/models.py:297
+msgid "Bullet Item"
+msgstr "Madde Öğesi"
+
+#: home/models.py:309
+msgid "Main heading text"
+msgstr "Ana başlık metni"
+
+#: home/models.py:315
+msgid "Add bullet list items"
+msgstr "Madde liste öğeleri ekleyin"
+
+#: home/models.py:326
+msgid "URL for the call-to-action button"
+msgstr "Eylem çağrısı düğmesi için URL"
+
+#: home/models.py:331
+msgid "Right-side illustration (e.g. 1000×800px PNG)"
+msgstr "Sağ taraftaki illüstrasyon (ör. 1000×800px PNG)"
+
+#: home/models.py:336
+msgid "Information Section"
+msgstr "Bilgi Bölümü"
+
+#: home/models.py:344
+msgid "Bullet"
+msgstr "Madde"
+
+#: home/models.py:353
+msgid "Full-width parallax background (1920×1200 önerilir)"
+msgstr "Tam genişlikli paralaks arka plan (1920×1200 önerilir)"
+
+#: home/models.py:359
+msgid "data-parallax-background-ratio değeri (örn. \"0.6\")"
+msgstr "Paralaks arka plan oranı değeri (örn. '0.6')"
+
+#: home/models.py:365
+msgid "Opacity div’ine verilecek sınıf (örn. \"bg-extra-dark-gray\")"
+msgstr "Şeffaflık div'ine atanacak sınıf (örn. 'bg-extra-dark-gray')"
+
+#: home/models.py:371
+msgid "Opacity yoğunluğu sınıfı (örn. \"opacity-medium\")"
+msgstr "Şeffaflık yoğunluğu sınıfı (örn. 'opacity-medium')"
+
+#: home/models.py:375
+msgid "Sol taraftaki illüstrasyon (ör. PNG, genişlik ~900px)"
+msgstr "Sol taraftaki illüstrasyon (ör: PNG, genişlik ~900px)"
+
+#: home/models.py:387
+msgid "Madde satırları"
+msgstr "Liste satırları"
+
+#: home/models.py:395
+msgid "Buton URL"
+msgstr "Düğme URL'si"
+
+#: home/models.py:400
+msgid "Parallax Info Section"
+msgstr "Paralaks Bilgi Bölümü"
+
+#: home/models.py:407
+msgid "Icon CSS class, e.g. \"icon-desktop\""
+msgstr "İkon CSS sınıfı, örn. 'icon-desktop'"
+
+#: home/models.py:420
+msgid "Mini Feature"
+msgstr "Mini Özellik"
+
+#: home/models.py:431
+msgid "Left column image (900×650 px önerilir)"
+msgstr "Sol sütun resmi (900×650 px önerilir)"
+
+#: home/models.py:450
+msgid "Right column image (900×650 px önerilir)"
+msgstr "Sağ sütun resmi (900×650 px önerilir)"
+
+#: home/models.py:455
+msgid "MasonryPortfolioSection"
+msgstr "Duvar Portföy Bölümü"
+
+#: home/models.py:464
+msgid "İkon CSS sınıfı, ör. \"icon-desktop\""
+msgstr "İkon CSS sınıfı, örn. \"icon-desktop\""
+
+#: home/models.py:469
+msgid "Sayaçta gösterilecek sayı"
+msgstr "Sayaçta görüntülenecek sayı"
+
+#: home/models.py:478
+msgid "Counter Item"
+msgstr "Sayaç Öğesi"
+
+#: home/models.py:488
+msgid "Sayaç öğeleri ekleyin"
+msgstr "Sayaç öğelerini ekleyin"
+
+#: home/models.py:493
+msgid "Counters Section"
+msgstr "Sayaçlar Bölümü"
+
+#: home/models.py:503
+msgid "Logo tıklandığında gidilecek URL"
+msgstr "Logoya tıklandığında gidilecek URL"
+
+#: home/models.py:507
+msgid "Client Logo"
+msgstr "Müşteri Logosu"
+
+#: home/models.py:517
+msgid "Slider’a eklenecek logolar"
+msgstr "Slider’a eklenmek üzere logolar"
+
+#: home/models.py:522
+msgid "Clients Slider Section"
+msgstr "Müşteriler Slider Bölümü"
+
+#: home/models.py:531
+msgid "Yayın tarihi"
+msgstr "Yayınlanma Tarihi"
+
+#: home/models.py:541
+msgid "Kısa özet (en fazla 220 karakter)"
+msgstr "Kısa özet (220 karakterden fazla değil)"
+
+#: home/models.py:546
+msgid "Blog Card"
+msgstr "Blog Kartı"
+
+#: home/models.py:562
+msgid "Gösterilecek blog yazıları"
+msgstr "Gösterilecek blog yazıları"
+
+#: home/models.py:567
+msgid "Latest Blog Section"
+msgstr "Son Bloglar Bölümü"
+
+#: home/models.py:581
+msgid "Platform name"
+msgstr "Platform adı"
+
+#: home/models.py:583
+msgid "Icon"
+msgstr "Simge"
+
+#: home/models.py:588
+msgid "URL"
+msgstr "URL"
+
+#: home/models.py:596
+msgid "Social Media Platform"
+msgstr "Sosyal Medya Platformu"
+
+#: home/models.py:597
+msgid "Social Media Platforms"
+msgstr "Sosyal Medya Platformları"
+
+#: home/models.py:712 home/models.py:728 home/models.py:818
+msgid "Enter the description of the Page"
+msgstr "Sayfanın açıklamasını girin"
+
+#: home/models.py:830
+msgid "The body of the page."
+msgstr "Sayfanın gövdesi."
+
+#: home/templates/home/404.html:20
+msgid "Page not found"
+msgstr "Sayfa bulunamadı"
+
+#: home/templates/home/404.html:21
+msgid "The page you are looking for is not found."
+msgstr "Aradığınız sayfa bulunamadı"
+
+#: home/templates/home/404.html:25
+msgid "Return to Home Page"
+msgstr "Anasayfaya dön"
+
+#: home/templates/home/empty_page.html:123
+msgid "Follow us"
+msgstr "Bizi takip edin"
+
+#: home/templates/home/empty_page.html:145
+#: home/templates/home/includes/footer.html:40
+msgid "Our Contact Information"
+msgstr "İletişim bilgilerimiz"
+
+#: home/templates/home/empty_page.html:147
+msgid "Contact Us"
+msgstr "Bize ulaşın"
+
+#: home/templates/home/empty_page.html:190
+msgid "Telephone"
+msgstr "Telefon"
+
+#: home/templates/home/empty_page.html:204
+msgid "E-mail"
+msgstr "e-posta"
+
+#: home/templates/home/empty_page.html:219
+msgid "Working Hours"
+msgstr "Çalışma saatleri"
+
+#: home/templates/home/empty_page.html:263
+msgid "Vision"
+msgstr "Vizyon"
+
+#: home/templates/home/empty_page.html:269
+msgid "Mission"
+msgstr "Misyon"
+
+#: home/templates/home/includes/footer.html:67
+msgid "Your Solution Partner"
+msgstr "Çözüm Ortağınız"
+
+#: home/templates/home/includes/footer.html:69
+msgid ""
+"RinTech Robotics — We shape the future with smart manufacturing solutions."
+msgstr ""
+"RinTech Robotics — Akıllı üretim çözümleriyle geleceği şekillendiriyoruz."
+
+#: home/templates/home/includes/footer.html:88
+msgid "All rights reserved."
+msgstr "Tüm hakları saklıdır"
+
+#: home/templates/home/includes/footer.html:91
+msgid ""
+"This website was developed by RinTechRobotics.com\n"
+"            "
+msgstr "Bu web site rteknoloji.com tarafından geliştirilmiştir."
+
+#: home/templates/home/includes/inner_side_navbar.html:66
+#: home/templates/home/includes/side_navbar.html:68
+msgid "Homepage"
+msgstr "Anasayfa"
+
+#: home/templates/home/includes/inner_side_navbar.html:142
+#: home/templates/home/includes/side_navbar.html:145
+msgid "Enter your words..."
+msgstr "Kelimelerinizi giriniz..."
+
+#: home/templates/home/partials/project_contact_form.html:6
+#: home/templates/home/partials/project_contact_form.html:18
+msgid "Get a Quote"
+msgstr "Teklif al"
+
+#: pofo/blocks/home/classic/corporate.py:74
+msgid "Label"
+msgstr "Etiket"
+
+#: pofo/blocks/home/classic/corporate.py:74
+msgid "Button text"
+msgstr "Düğme metni"
+
+#: pofo/blocks/home/classic/corporate.py:76
+msgid "Internal page"
+msgstr "İç sayfa"
+
+#: pofo/blocks/home/classic/corporate.py:77
+msgid "If both page and URL are set, 'page' wins."
+msgstr "Hem sayfa hem URL ayarlanmışsa, 'sayfa' önceliklidir."
+
+#: pofo/blocks/home/classic/corporate.py:79
+msgid "External URL"
+msgstr "Harici URL"
+
+#: pofo/blocks/home/classic/corporate.py:81
+msgid "Classes"
+msgstr "Sınıflar"
+
+#: pofo/blocks/home/classic/corporate.py:83
+msgid "Append POFO/Bootstrap classes, e.g. 'btn-medium border-radius-4'."
+msgstr "POFO/Bootstrap sınıflarını ekleyin, örn: 'btn-medium border-radius-4'."
+
+#: pofo/blocks/home/classic/corporate.py:94
+#: pofo/blocks/home/classic/corporate.py:159
+msgid "CTA Button"
+msgstr "Eylem Çağrısı Düğmesi"
+
+#: pofo/blocks/home/classic/corporate.py:99
+msgid "Background image"
+msgstr "Arka plan görüntüsü"
+
+#: pofo/blocks/home/classic/corporate.py:104
+msgid "Use background video"
+msgstr "Arka plan videosu kullan"
+
+#: pofo/blocks/home/classic/corporate.py:108
+msgid "Video (MP4) – internal"
+msgstr "Video (MP4) – dahili"
+
+#: pofo/blocks/home/classic/corporate.py:111
+msgid "Video URL (MP4) – external"
+msgstr "Video URL’si (MP4) – harici"
+
+#: pofo/blocks/home/classic/corporate.py:117
+msgid "Video preload"
+msgstr "Video ön yükleme"
+
+#: pofo/blocks/home/classic/corporate.py:120
+msgid "Loop video"
+msgstr "Videoyu döngüye al"
+
+#: pofo/blocks/home/classic/corporate.py:123
+msgid "Muted (autoplay-safe)"
+msgstr "Sessiz (otomatik oynatma için güvenli)"
+
+#: pofo/blocks/home/classic/corporate.py:126
+msgid "Autoplay"
+msgstr "Otomatik Oynatma"
+
+#: pofo/blocks/home/classic/corporate.py:129
+msgid "Plays inline (mobile)"
+msgstr "Doğrudan oynatılır (mobil cihazlarda)"
+
+#: pofo/blocks/home/classic/corporate.py:132
+msgid "Force rewind at slide start"
+msgstr "Slayt başlangıcında tekrar sarma zorunlu"
+
+#: pofo/blocks/home/classic/corporate.py:135
+msgid "Start at (seconds)"
+msgstr "Başlama süresi (saniye)"
+
+#: pofo/blocks/home/classic/corporate.py:140
+msgid "Eyebrow / small heading"
+msgstr "Küçük Başlık"
+
+#: pofo/blocks/home/classic/corporate.py:141
+msgid "E.g. 'we work hard, we play hard'."
+msgstr "Örn. 'çok çalışırız, çok eğleniriz'."
+
+#: pofo/blocks/home/classic/corporate.py:145
+msgid "POFO/Revolution caption class for the eyebrow."
+msgstr "Eyebrow için POFO/Revolution açıklama sınıfı."
+
+#: pofo/blocks/home/classic/corporate.py:150
+msgid "Rich text is allowed. Use Shift+Enter for line breaks."
+msgstr "Zengin metin kabul edilir. Satır sonu için Shift+Enter kullanın."
+
+#: pofo/blocks/home/classic/corporate.py:151
+msgid "Main title"
+msgstr "Ana Başlık"
+
+#: pofo/blocks/home/classic/corporate.py:156
+msgid "POFO/Revolution caption class for the title."
+msgstr "Başlık için POFO/Revolution açıklama sınıfı."
+
+#: pofo/blocks/home/classic/corporate.py:162
+msgid "Animation speed in milliseconds."
+msgstr "Animasyon hızı (milisaniye cinsinden)."
+
+#: pofo/blocks/home/classic/corporate.py:165
+msgid "Dark overlay"
+msgstr "Koyu katman"
+
+#: pofo/blocks/home/classic/corporate.py:166
+msgid "Adds POFO 'opacity-extra-medium bg-black' overlay."
+msgstr "POFO 'opacity-extra-medium bg-black' katmanını ekler."
+
+#: pofo/blocks/home/classic/corporate.py:169
+msgid "Bullet thumbnail"
+msgstr "Madde küçük resmi"
+
+#: pofo/blocks/home/classic/corporate.py:170
+msgid "Used in slider bullets if enabled."
+msgstr "Etkinse kaydırıcı mermilerinde kullanılır."
+
+#: pofo/blocks/home/classic/corporate.py:174
+msgid "Transition effect for the slide."
+msgstr "Kaydırıcı için geçiş efekti."
+
+#: pofo/blocks/home/classic/corporate.py:204
+msgid "POFO Hero Slide"
+msgstr ""
+
+#: pofo/blocks/home/classic/corporate.py:217
+msgid "Classes applied to the outer <section>."
+msgstr "Dış <section>'e uygulanan sınıflar"
+
+#: pofo/blocks/home/classic/corporate.py:221
+msgid "Show bullets"
+msgstr "Madde işaretlerini göster"
+
+#: pofo/blocks/home/classic/corporate.py:223
+msgid "Slides"
+msgstr "Slaytlar"
+
+#: pofo/blocks/home/classic/corporate.py:227
+msgid "DOM id for the slider, keep unique per page."
+msgstr "Kaydırıcı için DOM kimliği, sayfa başına benzersiz tutulmalıdır."
+
+#: pofo/blocks/home/classic/corporate.py:701
+#: pofo/blocks/home/classic/corporate.py:1179
+msgid "Repeating sequence of column classes applied per feature item."
+msgstr "Özellik öğesi başına uygulanan sütun sınıflarının tekrarlanan dizisi."
+
+#: pofo/blocks/home/classic/corporate.py:915
+msgid "Repeating sequence of column classes per item."
+msgstr "Öğe başına sütun sınıflarının tekrarlanan dizisi."
+
+#: pofo/blocks/home/classic/one_page.py:66
+msgid "Accordion item title"
+msgstr "Akordeon öğe başlığı"
+
+#: pofo/blocks/home/classic/one_page.py:70
+msgid "Accordion item content"
+msgstr "Akordeon öğe içeriği"
+
+#: pofo/blocks/home/classic/one_page.py:75
+msgid "Expanded on load?"
+msgstr "Yükleme sırasında genişletilsin mi?"
+
+#: pofo/blocks/home/classic/one_page.py:92
+msgid "Small line above the heading"
+msgstr "Başlığın üzerinde küçük çizgi"
+
+#: pofo/blocks/home/classic/one_page.py:96
+msgid "Main heading"
+msgstr "Ana başlık"
+
+#: pofo/blocks/home/classic/one_page.py:100
+msgid "Right-side background image"
+msgstr "Sağ taraf arka plan resmi"
+
+#: pofo/blocks/home/classic/one_page.py:133
+msgid "Optional HTML id for the section"
+msgstr "Bölüm için isteğe bağlı HTML id"
+
+#: pofo/blocks/home/classic/start_up.py:70
+msgid "Place the text above and image below (like the middle example)."
+msgstr "Metni yukarıda, resmi aşağıda yerleştirin (orta örnekte olduğu gibi)."
+
+#: pofo/blocks/home/classic/start_up.py:76
+msgid "Decorative arrow on the text block."
+msgstr "Metin bloğunda dekoratif ok."
+
+#: pofo/blocks/home/classic/start_up.py:85
+msgid "Classes for the little colored separator line."
+msgstr "Küçük renkli ayırıcı çizgi için sınıflar."
+
+#: pofo/blocks/home/classic/start_up.py:104
+msgid "Add 1–3 items"
+msgstr "1–3 öğe ekleyin"
+
+#: pofo/blocks/home/creative/small_business.py:71
+msgid "Main headline; supports <strong> for emphasis."
+msgstr "Ana başlık; vurgulamak için <strong> destekler."
+
+#: pofo/blocks/home/creative/small_business.py:74
+msgid "Background image (large, wide)."
+msgstr "Arka plan görüntüsü (büyük, geniş)."
+
+#: pofo/blocks/home/creative/small_business.py:79
+msgid "data-parallax-background-ratio"
+msgstr ""
+
+#: pofo/blocks/home/creative/small_business.py:84
+msgid "CSS background-position."
+msgstr "CSS arka plan konumu"
+
+#: pofo/blocks/home/creative/small_business.py:121
+#: pofo/blocks/home/creative/small_business.py:204
+msgid "Optional #id for the section"
+msgstr "Bölüm için isteğe bağlı #id"
+
+#: pofo/blocks/home/creative/small_business.py:133
+msgid "Partner/client logo"
+msgstr "Ortak/müşteri logosu"
+
+#: pofo/blocks/home/creative/small_business.py:137
+msgid "Accessible alt text (defaults to image title)"
+msgstr "Erişilebilir alternatif metin (varsayılan olarak resim başlığıdır)"
+
+#: pofo/blocks/home/creative/small_business.py:141
+msgid "Internal link (optional)"
+msgstr "İç bağlantı (İsteğe bağlı)"
+
+#: pofo/blocks/home/creative/small_business.py:143
+msgid "External link (optional)"
+msgstr "Dış bağlantı (isteğe bağlı)"
+
+#: pofo/blocks/home/creative/small_business.py:147
+msgid "Extra classes for this logo’s column (optional)"
+msgstr "Bu logonun sütunu için ek sınıflar (isteğe bağlı)"
+
+#: pofo/blocks/home/creative/small_business.py:199
+msgid "Rendered width for logos (px)"
+msgstr "Logolar için oluşturulan genişlik (px)"
+
+#: search/templates/search/search.html:37
+msgid "Browse"
+msgstr "İncele"

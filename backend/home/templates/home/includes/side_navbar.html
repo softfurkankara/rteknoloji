@@ -1,0 +1,173 @@
+{% load i18n %}
+{% load static %}
+{% load get_site_logo %}
+{% load navigation_tags %}
+{% get_site_logo as page %}
+{% get_site_root as root %}
+{% load social_media_tags %}
+{% get_social_media_links as social_accounts %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<style>
+    .logo img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 143px !important;
+        object-fit: contain;
+    }
+
+    /* Mobil ekranlar */
+    @media (max-width: 768px) {
+        .logo img {
+            max-height: 50px !important;
+        }
+    }
+</style>
+<!-- start navigation -->
+<nav class="navbar navbar-default
+            bootsnav navbar-top header-light
+            background-transparent nav-box-width
+            white-link navbar-expand-lg">
+
+    <div class="container-fluid nav-header-container">
+        <!-- start logo -->
+        <div class="col-auto ps-0">
+            <a href="{% pageurl root.get_site.root_page.localized %}"
+               title="{{ page.title }}"
+               class="logo">
+                {% if page.logo %}
+                    {% image page.logo width-220 as logo_w %}
+                    <img src="{{ logo_w.file.url }}"
+                         data-at2x="{{ logo_w.file.url }}"
+                         class="logo-dark"
+                         alt="{{ page.title }}">
+                    <img src="{{ logo_w.file.url }}"
+                         data-at2x="{{ logo_w.file.url }}"
+                         alt="{{ page.title }}"
+                         class="logo-light default"></a>
+                {% endif %}
+        </div>
+        <!-- end logo -->
+        <div class="col accordion-menu pe-0 pe-md-3">
+            <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse"
+                    data-bs-target="#navbar-collapse-toggle-1">
+                <span class="sr-only">toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-collapse collapse justify-content-end"
+                 id="navbar-collapse-toggle-1">
+                <ul id="accordion"
+                    class="nav navbar-nav no-margin alt-font text-normal"
+                    data-in="animate__fadeIn"
+                    data-out="animate__fadeOut">
+                    <!-- start menu item -->
+                    <li class="dropdown megamenu-fw">
+                        <a href="{% pageurl root.get_site.root_page.localized %}">{% translate 'Homepage' %}</a>
+                        <i class="fa-solid fa-angle-down dropdown-toggle"
+                           data-bs-toggle="dropdown"
+                           aria-hidden="true">
+                        </i>
+                    </li>
+                    <!-- end menu item -->
+                    {# Top-level items #}
+                    {% for site in root.get_children.live.in_menu %}
+                        {% with has_children=site.get_children.live.in_menu.exists %}
+                            {% if not has_children %}
+                                {# Plain link (no submenu) #}
+                                <li>
+                                    <a href="{% pageurl site.localized %}">{{ site.localized.title }}</a>
+                                </li>
+                            {% else %}
+                                {# POFO-style 2-level dropdown #}
+                                <li class="dropdown simple-dropdown">
+                                    <a href="#">{{ site.localized.title }}</a>
+                                    <i class="fa-solid fa-angle-down dropdown-toggle"
+                                       data-bs-toggle="dropdown"
+                                       aria-haspopup="true"
+                                       aria-expanded="false"
+                                       aria-hidden="true"></i>
+
+                                    <!-- start sub menu -->
+                                    <ul class="dropdown-menu" role="menu">
+                                        {% for child in site.get_children.live.in_menu %}
+                                            {% with child_has_children=child.get_children.live.in_menu.exists %}
+                                                {% if child_has_children %}
+                                                    <li class="dropdown">
+                                                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                                                            {{ child.localized.title }} <i
+                                                                class="fa-solid fa-angle-right"></i>
+                                                        </a>
+                                                        <ul class="dropdown-menu">
+                                                            {% for sub_child in child.get_children.live.in_menu %}
+                                                                <li>
+                                                                    <a href="{% pageurl sub_child.localized %}">{{ sub_child.localized.title }}</a>
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </li>
+                                                {% else %}
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                           href="{% pageurl child.localized %}">{{ child.localized.title }}</a>
+                                                    </li>
+                                                {% endif %}
+                                            {% endwith %}
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endif %}
+                        {% endwith %}
+                    {% endfor %}
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-auto pe-0">
+            <div class="header-searchbar">
+                <a href="#search-header"
+                   class="header-search-form">
+                    <i class="fa-solid fa-magnifying-glass search-button"></i>
+                </a>
+                <!-- search input-->
+                <form id="search-header"
+                      method="get"
+                      action="{% url 'search' %}"
+                      name="search-header"
+                      class="mfp-hide search-form-result">
+                    <div class="search-form position-relative">
+                        <button type="submit"
+                                class="fa-solid fa-magnifying-glass close-search search-button">
+                        </button>
+                        <input type="text" name="query" class="search-input"
+                               placeholder="{% translate 'Enter your words...' %}" autocomplete="off">
+                    </div>
+                </form>
+            </div>
+            <div class="header-social-icon d-none d-md-inline-block">
+                <ul class="list-inline mb-0">
+                    {% for language_code, language_name in LANGUAGES %}
+                        {% get_language_info for language_code as lang %}
+                        {% language language_code %}
+                            <li class="list-inline-item mx-1">
+                                <a href="{% pageurl page.localized %}"
+                                   rel="alternate"
+                                   hreflang="{{ language_code }}"
+                                   class="text-white text-decoration-none d-flex align-items-center hover:text-deep-pink transition">
+                                    <img src="{% static 'images/country-flag-16X16/'|add:language_code|add:'.png' %}"
+                                         alt="{{ lang.name_local }} flag"
+                                         width="20" height="14"
+                                         class="me-1 rounded shadow-sm">
+                                    <span class="small fw-semibold">{{ language_code }}</span>
+                                </a>
+                            </li>
+                        {% endlanguage %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- end navigation -->

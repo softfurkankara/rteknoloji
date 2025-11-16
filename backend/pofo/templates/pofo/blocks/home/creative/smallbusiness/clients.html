@@ -1,0 +1,33 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<section
+		{% if value.anchor_id %}id="{{ value.anchor_id }}"{% endif %}
+		class="{{ value.section_classes }}"
+		style="visibility: visible; animation-name: fadeIn;"
+>
+	<div class="{{ value.container_classes }}">
+		<div class="{{ value.outer_row_classes }}">
+			<div class="{{ value.full_col_classes }}">
+				<div class="{{ value.logos_row_classes }}">
+					{% for item in value.items %}
+						{% with col_classes=value.logo_col_classes %}
+							<div class="{{ col_classes }} {% if item.item_extra_classes %}{{ item.item_extra_classes }}{% endif %}">
+								{% image item.image width-225 as logo %}
+								{% with alt=item.alt_text|default:item.image.title %}
+									{% if item.page or item.url %}
+										<a href="{{ item.page.url|default:item.url }}" {% if item.open_in_new_tab %}target="_blank"
+										   rel="noopener nofollow"{% endif %}>
+											<img src="{{ logo.url }}" alt="{{ alt }}" data-no-retina="">
+										</a>
+									{% else %}
+										<img src="{{ logo.url }}" alt="{{ alt }}" data-no-retina="">
+									{% endif %}
+								{% endwith %}
+							</div>
+						{% endwith %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

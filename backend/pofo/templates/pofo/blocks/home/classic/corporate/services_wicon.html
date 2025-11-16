@@ -1,0 +1,23 @@
+<section class="{{ self.section_classes }}">
+	<div class="{{ self.container_classes }}">
+		<div class="row justify-content-center">
+			<div class="{{ self.intro_col_classes }}">
+				<h5 class="alt-font text-extra-dark-gray font-weight-600">{{ self.heading }}</h5>
+				{% if self.description %}<p class="w-80 d-inline-block sm-w-100">{{ self.description }}</p>{% endif %}
+			</div>
+		</div>
+
+		<div class="{{ self.row_classes }}">
+			{% for it in items_decorated %}
+				<div class="{{ it.col_classes }}"{% if it.wow_delay %} data-wow-delay="{{ it.wow_delay }}"{% endif %}>
+					<div
+							class="bg-white border-color-extra-medium-gray border text-center padding-eighteen-tb border-radius-4 position-relative h-100">
+						<div class="d-inline-block margin-20px-bottom"><i class="{{ it.item.icon_class }}"></i></div>
+						<div class="alt-font text-extra-dark-gray font-weight-600 margin-10px-bottom">{{ it.item.title }}</div>
+						<p class="w-75 mx-auto md-w-80">{{ it.item.text }}</p>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>

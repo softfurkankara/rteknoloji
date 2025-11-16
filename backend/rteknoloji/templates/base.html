@@ -1,0 +1,73 @@
+{% load static wagtailcore_tags wagtailuserbar %}
+
+<!DOCTYPE html>
+<html lang="{{ page.locale.language_code }}">
+<head>
+	<meta charset="utf-8"/>
+	<title>
+		{% block title %}
+			{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+		{% endblock %}
+		{% block title_suffix %}
+			{% wagtail_site as current_site %}
+			{% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+		{% endblock %}
+	</title>
+	{% if page.search_description %}
+		<meta name="description" content="{{ page.search_description }}"/>
+	{% endif %}
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+	{# Force all links in the live preview panel to be opened in a new tab #}
+	{% if request.in_preview_panel %}
+		<base target="_blank">
+	{% endif %}
+
+	{# Global stylesheets #}
+	<!-- favicon -->
+	<link rel="shortcut icon" sizes="16x16" href="{% static 'images/favicon.png' %}">
+	<link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon-57x57.png' %}">
+	<link rel="apple-touch-icon" sizes="72x72" href="{% static 'images/apple-touch-icon-72x72.png' %}">
+	<link rel="apple-touch-icon" sizes="114x114" href="{% static 'images/apple-touch-icon-114x114.png' %}">
+	<!-- style sheets and font icons  -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootsnav.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/font-icons.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/theme-vendors.min.css' %}">
+	<!-- revolution slider -->
+	<link rel="stylesheet" type="text/css" href="{% static 'revolution/css/settings.css' %}" media="screen"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'revolution/css/layers.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'revolution/css/navigation.css' %}">
+	<!-- style sheets -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/rteknoloji.css' %}">
+	{% block extra_css %}
+		{# Override this in templates to add extra stylesheets #}
+	{% endblock %}
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+{% wagtailuserbar %}
+
+{% block content %}
+{% endblock %}
+
+{# Global javascript #}
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootsnav.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.nav.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/hamburger-menu.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/theme-vendors.min.js' %}"></script>
+<!-- revolution -->
+<script type="text/javascript" src="{% static 'revolution/js/jquery.themepunch.tools.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'revolution/js/jquery.themepunch.revolution.min.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/rteknoloji.js' %}"></script>
+
+{% block extra_js %}
+	{# Override this in templates to add extra javascript #}
+{% endblock %}
+</body>
+</html>
