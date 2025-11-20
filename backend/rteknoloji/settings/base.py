@@ -245,7 +245,7 @@ except Exception:
     CAN_WRITE_LOGS = False
 
 FILE_HANDLERS = ["file_info", "file_error"] if CAN_WRITE_LOGS else []
-
+X_FRAME_OPTIONS = "SAMEORIGIN"
 # Admins who will receive error emails when DEBUG=False
 # Provide a comma-separated list of emails via ADMIN_EMAILS env, e.g. "ops@example.com,dev@example.com"
 # _admin_emails = env("ADMIN_EMAILS", default="")

@@ -14,6 +14,17 @@
             transform: translateY(-3px);
             transition: all 0.3s ease-in-out;
         }
+
+        .media-block {
+            margin-bottom: 60px;
+            margin-top: 40px;
+        }
+
+        .blog-post-content img,
+        .blog-post-content iframe,
+        .blog-post-content embed {
+            margin-bottom: 30px;
+        }
     </style>
     {% if page.body %}
         {% for block in page.body %}
@@ -95,7 +106,16 @@
                                                 </ul>
                                             </div>
                                         {% endif %}
-
+                                        {% if media.file %}
+                                            <div class="pdf-preview media-block">
+                                                <embed
+                                                        src="{{ media.file.url }}"
+                                                        type="application/pdf"
+                                                        width="100%"
+                                                        height="600px">
+                                                </embed>
+                                            </div>
+                                        {% endif %}
                                     </div>
                                 {% endfor %}
 
@@ -160,8 +180,8 @@
                             {% if block.value.contact_image %}
                                 {% image block.value.contact_image fill-1000x700 as c_img %}
                                 <div class="col p-0 cover-background md-h-450px sm-h-350px wow animate__fadeInLeft">
-                                 <iframe width="100%" height="699"
-                                    src="https://maps.google.com/maps?width=100%&amp;height=750&amp;hl=en&amp;q=Ramazanoğlu mah. sultan sokak no:16 Pendik / İstanbul&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                                    <iframe width="100%" height="699"
+                                            src="https://maps.google.com/maps?width=100%&amp;height=750&amp;hl=en&amp;q=Ramazanoğlu mah. sultan sokak no:16 Pendik / İstanbul&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
 
                                 </div>
                             {% endif %}
@@ -307,6 +327,9 @@
                                                 <div class="blog-post-images mb-3"
                                                      style="aspect-ratio: 5 / 3; display: flex; align-items: center; justify-content: center; overflow: hidden;">
                                                     <a href="
+
+
+
                                                             {% if logo.link %}{{ logo.link }}{% else %}javascript:void(0){% endif %}">
                                                         <img src="{{ img_b.url }}" alt="{{ logo.company_name }}"
                                                              style="max-width: 100%; max-height: 100%; object-fit: contain;"/>
@@ -314,6 +337,9 @@
                                                 </div>
                                                 <div class="post-details">
                                                     <a href="
+
+
+
                                                             {% if logo.link %}{{ logo.link }}{% else %}javascript:void(0){% endif %}"
                                                        class="alt-font post-title text-medium text-extra-dark-gray d-block mb-1">{{ logo.company_name }}</a>
                                                     <p class="text-small">{{ logo.work_description }}</p>
@@ -363,7 +389,7 @@
                                 {% with p=post delay=forloop.counter0|stringformat:"d"|add:"0.2" %}
                                     <li class="grid-item last-paragraph-no-margin
                                                 wow animate__fadeInUp"
-                                                data-wow-delay="{{ delay }}s">
+                                        data-wow-delay="{{ delay }}s">
 
                                         <div class="blog-post blog-post-style1
                                                     text-center text-sm-start">
@@ -385,11 +411,11 @@
                       {{ p.published_date|date:"d F Y" }}
                     </span>
 
-                        <a href="{{ p.url }}"
-                           class="post-title text-medium text-extra-dark-gray
+                                                <a href="{{ p.url }}"
+                                                   class="post-title text-medium text-extra-dark-gray
                                 w-90 d-block md-w-100">
-                            {{ p.title }}
-                        </a>
+                                                    {{ p.title }}
+                                                </a>
                                                 <div class="separator-line-horrizontal-full
                                 bg-medium-light-gray margin-20px-tb
                                 md-margin-15px-tb"></div>

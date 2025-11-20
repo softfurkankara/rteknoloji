@@ -40,6 +40,7 @@ from wagtail.blocks import (
     StreamBlock, IntegerBlock, DateBlock,
     PageChooserBlock
 )
+from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.fields import StreamField, RichTextField
 from wagtail.images.widgets import AdminImageChooser
 from wagtail.models import Page, Orderable
@@ -609,14 +610,12 @@ class BaseSitePage(Page):
         ("logo-left", "Logo solda"),
         ("logo-center", "Logo ortada"),
     ]
-
     navbar_style = models.CharField(
         max_length=50,
         choices=NAVBAR_CHOICES,
         default="logo-center",
         verbose_name="Navbar Tasarımı"
     )
-
     site_logo = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
@@ -761,7 +760,7 @@ class BlogMediaBlock(StructBlock):
                        help_text="Slider için birden fazla görsel ekleyin.")
     gallery = ListBlock(ImageChooserBlock(required=False), required=False,
                         help_text="Galeri için birden fazla görsel ekleyin.")
-
+    file = DocumentChooserBlock(required=False, help_text="PDF veya doküman ekleyin.")
     class Meta:
         icon = "media"
         label = "Blog Medya"
