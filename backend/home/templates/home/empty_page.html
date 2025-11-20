@@ -25,6 +25,26 @@
         .blog-post-content embed {
             margin-bottom: 30px;
         }
+
+        .post-details p {
+            max-height: 48px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Eğer d-flex sınıfı çalışmazsa bunu kullanın */
+        .grid-item {
+            display: flex !important;
+        }
+
+        .blog-post {
+            height: 100% !important;
+            width: 100%;
+            /* İçerikleri alt ve üst olarak ayırmak isterseniz: */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
     </style>
     {% if page.body %}
         {% for block in page.body %}
@@ -316,37 +336,40 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-12 blog-content">
-                                <ul class="blog-grid blog-wrapper grid grid-loading grid-3col xl-grid-3col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col hover-option4 blog-post-style3 gutter-extra-large">
+                                <ul class="blog-grid blog-wrapper grid grid-loading grid-4col xl-grid-4col lg-grid-4col md-grid-2col sm-grid-2col xs-grid-1col hover-option4 blog-post-style3 gutter-extra-large">
                                     <li class="grid-sizer"></li>
 
                                     {% for logo in block.value.logos %}
-                                        <!-- start post item -->
-                                        <li class="grid-item last-paragraph-no-margin text-center text-sm-start wow animate__fadeInUp">
+                                        <li class="grid-item last-paragraph-no-margin text-center text-sm-start wow animate__fadeInUp d-flex">
                                             {% image logo.logo width-600 as img_b %}
-                                            <div class="blog-post bg-light-gray text-center" style="padding: 20px;">
-                                                <div class="blog-post-images mb-3"
-                                                     style="aspect-ratio: 5 / 3; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-                                                    <a href="
 
+                                            <div class="blog-post bg-light-gray text-center h-100 w-100 d-flex flex-column justify-content-between"
+                                                 style="padding: 20px;">
 
+                                                <div>
+                                                    <div class="blog-post-images mb-3"
+                                                         style="aspect-ratio: 5 / 3; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                                                        <a href="
 
-                                                            {% if logo.link %}{{ logo.link }}{% else %}javascript:void(0){% endif %}">
-                                                        <img src="{{ img_b.url }}" alt="{{ logo.company_name }}"
-                                                             style="max-width: 100%; max-height: 100%; object-fit: contain;"/>
-                                                    </a>
+                                                                {% if logo.link %}{{ logo.link }}{% else %}javascript:void(0){% endif %}">
+                                                            <img src="{{ img_b.url }}" alt="{{ logo.company_name }}"
+                                                                 style="max-width: 100%; max-height: 100%; object-fit: contain;"/>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                                <div class="post-details">
+
+                                                <div class="post-details" style="min-height: 100px; display: flex; flex-direction: column; justify-content: center;">
                                                     <a href="
-
-
 
                                                             {% if logo.link %}{{ logo.link }}{% else %}javascript:void(0){% endif %}"
-                                                       class="alt-font post-title text-medium text-extra-dark-gray d-block mb-1">{{ logo.company_name }}</a>
+                                                       class="alt-font post-title text-medium text-extra-dark-gray d-block mb-1">
+                                                        {{ logo.company_name }}
+                                                    </a>
                                                     <p class="text-small">{{ logo.work_description }}</p>
                                                 </div>
+
                                             </div>
                                         </li>
-                                        <!-- end post item -->
                                     {% endfor %}
 
                                 </ul>
