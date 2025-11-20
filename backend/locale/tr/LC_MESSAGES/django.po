@@ -321,9 +321,9 @@ msgstr "Çözüm Ortağınız"
 
 #: home/templates/home/includes/footer.html:69
 msgid ""
-"RinTech Robotics — We shape the future with smart manufacturing solutions."
+"R Teknoloji — We shape the future with smart manufacturing solutions."
 msgstr ""
-"RinTech Robotics — Akıllı üretim çözümleriyle geleceği şekillendiriyoruz."
+"R Teknoloji — Akıllı üretim çözümleriyle geleceği şekillendiriyoruz."
 
 #: home/templates/home/includes/footer.html:88
 msgid "All rights reserved."
@@ -331,7 +331,7 @@ msgstr "Tüm hakları saklıdır"
 
 #: home/templates/home/includes/footer.html:91
 msgid ""
-"This website was developed by RinTechRobotics.com\n"
+"This website was developed by rteknoloji.com\n"
 "            "
 msgstr "Bu web site rteknoloji.com tarafından geliştirilmiştir."
 

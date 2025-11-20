@@ -116,10 +116,11 @@
                 </div>
             </section>
         {% elif block.block_type == 'home_about_section' %}
-            {% image  block.value.background_image fill-1920x1080 as b_img %}
+            {% image block.value.background_image fill-1920x1080 as b_img %}
             <section
                     class="wow animate__fadeIn overflow-hidden cover-background md-no-background-img bg-medium-light-gray"
-                    style="background-image: url('{% if b_img %}{{ b_img.file.url }}{% else %}https://via.placeholder.com/1920x800{% endif %}')">
+                    style="background-image: url('
+                            {% if b_img %}{{ b_img.file.url }}{% else %}https://via.placeholder.com/1920x800{% endif %}')">
                 <div class="container">
                     <div class="row">
                         <div class="col-12 col-lg-6 offset-lg-6 wow animate__fadeIn">
@@ -132,7 +133,7 @@
                                         {{ block.value.main_heading|default:"Akıllı sistemlerle üretimi daha verimli, güvenli ve sürdürülebilir hale getiriyoruz" }}
                                     </h5>
                                     <p class="w-90 md-w-100">
-                                        {{ block.value.paragraph|richtext|default:"Rintech Robotic, endüstriyel otomasyon, robotik entegrasyon ve özel makine sistemleri alanında yenilikçi çözümler sunan bir mühendislik firmasıdır. Misyonumuz, işletmelerin üretim süreçlerini optimize ederek verimliliği artırmak, insan gücünü destekleyen akıllı teknolojilerle güvenli ve sürdürülebilir bir gelecek inşa etmektir." }}
+                                        {{ block.value.paragraph|richtext|default:"R Teknoloji, endüstriyel otomasyon, robotik entegrasyon ve özel makine sistemleri alanında yenilikçi çözümler sunan bir mühendislik firmasıdır. Misyonumuz, işletmelerin üretim süreçlerini optimize ederek verimliliği artırmak, insan gücünü destekleyen akıllı teknolojilerle güvenli ve sürdürülebilir bir gelecek inşa etmektir." }}
                                     </p>
                                 </div>
                             </div>
@@ -142,6 +143,7 @@
                                     <div class="col text-center text-lg-start xs-margin-40px-bottom xs-no-padding-lr wow animate__fadeInUp last-paragraph-no-margin"
                                          {% if forloop.counter == 2 %}data-wow-delay="0.2s"{% endif %}>
                                         <i class="
+
                                                 {{ item.icon_class|default:'icon-tools' }} icon-extra-medium text-deep-pink margin-20px-bottom"></i>
                                         <div class="alt-font text-extra-dark-gray font-weight-600 margin-5px-bottom">
                                             {{ item.title|default:"Modern Mühendislik Altyapısı" }}

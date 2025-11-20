@@ -1,11 +1,24 @@
 {% extends "generic.html" %}
 {% load i18n %}
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailsettings_tags navigation_tags %}
 {% block header %}
-    <header>
-        {% include 'home/includes/inner_side_navbar.html' %}
-    </header>
-{% endblock %}
+        {% get_site_root as site_root %}
+        {% with root_page=site_root.specific %}
+            <header>
+                {% if root_page.navbar_style == "logo-center" %}
+                    {% include "home/includes/navbars/logo_center.html" %}
+                {% elif root_page.navbar_style == "logo-left" %}
+                    {% include "home/includes/navbars/logo_left.html" %}
+                {% elif root_page.navbar_style == "logo-right" %}
+                    {% include "home/includes/navbars/logo_right.html" %}
+                {% elif root_page.navbar_style == "mega-menu" %}
+                    {% include "home/includes/navbars/mega_menu.html" %}
+                {% else %}
+                    {% include "home/includes/navbars/logo_center.html" %}
+                {% endif %}
+            </header>
+        {% endwith %}
+    {% endblock header %}
 {% block inner_content %}
     <!-- start page title section -->
     <section class="wow animate__fadeIn bg-extra-dark-gray padding-35px-tb page-title-small top-space">

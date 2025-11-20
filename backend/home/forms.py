@@ -31,12 +31,12 @@ class ProjectContactForm(forms.ModelForm):
             f"Yorum: \n{instance.comment}")
         admin_email = settings.SMTP_MANAGER_MAIL  # örnek: 'info@domain.com'
         send_mail(admin_email, subject, body)
-        confirmation_subject = "Talebiniz Alındı – Rintech Roobtic"
+        confirmation_subject = "Talebiniz Alındı – R Teknoloji"
         confirmation_body = (
             f"{instance.name},\n\n"
             f"İletişim formunuz başarıyla alınmıştır. En kısa sürede sizinle iletişime geçilecektir.\n"
             f"İlginiz için teşekkür ederiz.\n\n"
-            f"Rintech Robotic Ekibi"
+            f"R Teknoloji Ekibi"
         )
         send_mail(instance.email, confirmation_subject, confirmation_body)
         return instance

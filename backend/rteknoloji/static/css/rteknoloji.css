@@ -1,15 +1,15 @@
 :root {
-    --base-color: #4f8fe6;
-    --dark-tyrianblue: #0d2b52;
+    --base-color: #fa9442;
+    --dark-tyrianblue: #008aa1;
 }
 
 .bg-extra-dark-gray {
-    background-image: linear-gradient(to left, #4f8fe6, #0d2b52)
+    background-image: linear-gradient(to left,#fa9442, #008aa1)
 }
 
 .bg-dark-footer {
     /*background-color: var(--base-color);*/
-    background-image: linear-gradient(to left, #4f8fe6, #0d2b52)
+    background-image: linear-gradient(to left,#fa9442, #008aa1)
 }
 
 .title-extra-large {
@@ -76,8 +76,8 @@ div.home.classic.corporate p {
 }
 
 .footer-modern {
-    background-image: linear-gradient(to left, #4f8fe6, #0d2b52);
-    color: #fff;
+    background-image: linear-gradient(to left, #fa9442, #008aa1);
+    color: #1b3644;
     font-family: "Inter", "Poppins", sans-serif;
 }
 
@@ -108,7 +108,7 @@ div.home.classic.corporate p {
 }
 
 .footer-modern .text-muted {
-    color: white !important;
+    color:#1b3644 !important;
 }
 
 @media (max-width: 767px) {
@@ -117,5 +117,14 @@ div.home.classic.corporate p {
     }
 }
 
-
+header.header-appear nav.header-dark, header.sticky nav.navbar-fixed-top.header-dark, header.sticky nav.navbar-scroll-fixed-top.header-dark {
+     background-image: linear-gradient(to left, #fa9442, #008aa1)!important;
+}
+header nav.navbar-default, nav.navbar.bootsnav {
+    border-bottom: 0;
+   background-image: linear-gradient(to left, #fa9442, #008aa1)!important;
+}
+header.header-appear nav.header-dark, header.sticky nav.navbar-fixed-top.header-dark, header.sticky nav.navbar-scroll-fixed-top.header-dark{
+    background-image: linear-gradient(to left, #fa9442, #008aa1)!important;
+}
 /* endregion responsive */

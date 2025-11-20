@@ -41,9 +41,10 @@ from wagtail.blocks import (
     PageChooserBlock
 )
 from wagtail.fields import StreamField, RichTextField
+from wagtail.images.widgets import AdminImageChooser
 from wagtail.models import Page, Orderable
 from modelcluster.fields import ParentalKey
-from wagtail.admin.panels import FieldPanel, PageChooserPanel, InlinePanel
+from wagtail.admin.panels import FieldPanel, PageChooserPanel, InlinePanel, TabbedInterface, ObjectList
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.models import register_snippet
 from wagtail.contrib.settings.models import BaseSiteSetting
@@ -600,16 +601,39 @@ class SocialMediaPlatform(models.Model):
         return self.name
 
 
-class HomePage(Page):
-    max_count = 1
-    logo = models.ForeignKey(
-        'wagtailimages.Image',
+class BaseSitePage(Page):
+    class Meta:
+        abstract = True
+
+    NAVBAR_CHOICES = [
+        ("logo-left", "Logo solda"),
+        ("logo-center", "Logo ortada"),
+    ]
+
+    navbar_style = models.CharField(
+        max_length=50,
+        choices=NAVBAR_CHOICES,
+        default="logo-center",
+        verbose_name="Navbar Tasarımı"
+    )
+
+    site_logo = models.ForeignKey(
+        "wagtailimages.Image",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+',
-
+        related_name="+",
+        verbose_name="Site Logosu"
     )
+
+    navbar_panels = [
+        FieldPanel("navbar_style"),
+        FieldPanel("site_logo", widget=AdminImageChooser),
+    ]
+
+
+class HomePage(BaseSitePage):
+    max_count = 1
     body = StreamField([
         # region Home Classic Corporate
         ("home_classic_corporate_sliders", HomeClassicCorporateSlidersBlock()),
@@ -637,14 +661,15 @@ class HomePage(Page):
         ("home_creative_small_business_clients", HomeCreativeSmallBusinessClientsBlock()),
 
     ])
-    content_panels = Page.content_panels + [
-        FieldPanel('logo'),
-        FieldPanel('body'),
-        InlinePanel(
-            'home_in_pages',
-            label='Home In Pages',
-        )
+    content_panels = [
+        FieldPanel("title"),
+        FieldPanel("body"),
     ]
+    edit_handler = TabbedInterface([
+        ObjectList(content_panels, heading="İçerik"),
+        ObjectList(BaseSitePage.navbar_panels, heading="Navbar Ayarları"),
+        ObjectList(Page.settings_panels, heading="Sayfa Ayarları"),
+    ])
 
 
 class HomeInPages(Orderable):

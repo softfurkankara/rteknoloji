@@ -1,16 +1,28 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailsettings_tags navigation_tags %}
 {% block content %}
     {% block header %}
-        <!-- start header -->
-        <header>
-            {% include 'home/includes/side_navbar.html' %}
-        </header>
-        <!-- end header -->
+        {% get_site_root as site_root %}
+        {% with root_page=site_root.specific %}
+            <header>
+                {% if root_page.navbar_style == "logo-center" %}
+                    {% include "home/includes/navbars/logo_center.html" %}
+                {% elif root_page.navbar_style == "logo-left" %}
+                    {% include "home/includes/navbars/logo_left.html" %}
+                {% elif root_page.navbar_style == "logo-right" %}
+                    {% include "home/includes/navbars/logo_right.html" %}
+                {% elif root_page.navbar_style == "mega-menu" %}
+                    {% include "home/includes/navbars/mega_menu.html" %}
+                {% else %}
+                    {% include "home/includes/navbars/logo_center.html" %}
+                {% endif %}
+            </header>
+        {% endwith %}
     {% endblock header %}
+
     {% block inner_content %}
     {% endblock inner_content %}
 
     {% include 'home/includes/footer.html' %}
-
 {% endblock content %}
+cd
