@@ -60,5 +60,5 @@ RUN chown -R appuser:appuser /app/logs
 USER appuser
 
 # Run the application.
-CMD gunicorn 'rteknoloji.wsgi' --bind=0.0.0.0:8000
+CMD gunicorn -c gunicorn.conf.py rteknoloji.wsgi:application
 #CMD python manage.py runserver 0.0.0.0:8000
